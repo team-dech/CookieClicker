@@ -3,9 +3,10 @@ package ch.jmnetwork.cookieclicker.helper;
 public class Helper
 {
     public static Helper[] helpers = new Helper[9];
+    public static int[] owned = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     
     public float productivity;
-    public int price;
+    public int price, pBase;
     
     public int helperID;
     
@@ -14,12 +15,12 @@ public class Helper
     public Helper(float prod, int pr, int ID)
     {
         productivity = prod;
-        price = pr;
+        price = pBase = pr;
     }
     
     public int getPriceForNextHelper()
     {
-        return 0;
+        return (int)(this.pBase * Math.pow(1.15F, Helper.owned[this.helperID]));
     }
     
     public static void registerHelpers()
