@@ -3,9 +3,9 @@ package ch.jmnetwork.cookieclicker.helper;
 
 public class HelperMine extends Helper
 {
-    public HelperMine(float prod, int pr)
+    public HelperMine(float prod, int pr, int i)
     {
-        super(prod, pr);
-        // TODO Auto-generated constructor stub
+        super(prod, pr, i);
+        type = EnumHelper.MINE;
     }
 }
