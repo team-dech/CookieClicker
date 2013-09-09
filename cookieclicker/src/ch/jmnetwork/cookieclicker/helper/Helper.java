@@ -1,6 +1,5 @@
 package ch.jmnetwork.cookieclicker.helper;
 
-
 public class Helper
 {
     public static Helper[] helpers = new Helper[9];
