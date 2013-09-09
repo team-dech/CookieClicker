@@ -36,6 +36,8 @@ public class CookieClickerMain
                 ccui.setCookieLevel(i);
                 i++;
                 // DEBUG END
+                
+                lastTime = System.nanoTime();
             }
         }
     }
