@@ -1,0 +1,6 @@
+package ch.jmnetwork.cookieclicker;
+
+public class HelperFarm extends Helper
+{
+    
+}

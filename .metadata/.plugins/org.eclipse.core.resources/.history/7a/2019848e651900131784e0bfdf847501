@@ -1,0 +1,12 @@
+package ch.jmnetwork.cookieclicker;
+
+import ch.jmnetwork.cookieclicker.helper.Helper;
+
+public class HelperFactory extends Helper
+{
+    public HelperFactory(float prod, int pr)
+    {
+        super(prod, pr);
+        // TODO Auto-generated constructor stub
+    }
+}

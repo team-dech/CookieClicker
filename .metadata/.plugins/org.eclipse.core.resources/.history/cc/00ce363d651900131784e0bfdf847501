@@ -1,0 +1,28 @@
+package ch.jmnetwork.cookieclicker;
+
+public class Helper
+{
+    public static Helper[] helpers = new Helper[9];
+    
+    public float productivity;
+    public int price;
+    
+    public Helper(float prod, int pr)
+    {
+        productivity = prod;
+        price = pr;
+    }
+    
+    public static void registerHelpers()
+    {
+        helpers[0] = new HelperClicker(0.1, 15);
+        helpers[1] = new HelperGrandma(0.5, 100);
+        helpers[2] = new HelperFarm(2, 500);
+        helpers[3] = new HelperFactory(10, 3000);
+        helpers[4] = new HelperMine(40, 10000);
+        helpers[5] = new HelperShipment(100, 40000);
+        helpers[6] = new HelperAlchemyLab(400, 200000);
+        helpers[7] = new HelperPortal(6666, 1666666);
+        helpers[8] = new HelperTimeMachine(98765, 123456789);
+    }
+}

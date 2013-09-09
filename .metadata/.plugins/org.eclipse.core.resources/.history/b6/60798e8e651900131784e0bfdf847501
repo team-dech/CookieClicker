@@ -1,0 +1,11 @@
+package ch.jmnetwork.cookieclicker;
+
+
+public class HelperClicker extends Helper
+{
+    public HelperClicker(float prod, int pr)
+    {
+        super(prod, pr);
+        // TODO Auto-generated constructor stub
+    }
+}

@@ -1,0 +1,6 @@
+package ch.jmnetwork.cookieclicker;
+
+public class HelperGrandma extends Helper
+{
+    
+}
