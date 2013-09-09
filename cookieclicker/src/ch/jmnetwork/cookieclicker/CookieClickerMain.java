@@ -12,6 +12,7 @@ public class CookieClickerMain
     public static void main(String[] args)
     {
         INSTANCE = new CookieClickerMain();
+        CookieManager.instance = new CookieManager();
         
         while (true)
         {
