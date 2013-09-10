@@ -27,7 +27,7 @@ public class CCUserInterface
     private static JButton cookie_button;
     private static JLabel randomJlabel;
     private static JLabel randomJLabel2;
-    private static JButton randomJButton;
+    private static JButton pointerBuyButton;
     
     public CCUserInterface(CookieManager cookieManager)
     {
@@ -73,7 +73,7 @@ public class CCUserInterface
         cookie_button = new JButton();
         randomJlabel = new JLabel();
         randomJLabel2 = new JLabel();
-        randomJButton = new JButton();
+        pointerBuyButton = new JButton();
         
         // ======================================//
         // COMPONENT SETTINGS
@@ -105,10 +105,21 @@ public class CCUserInterface
         randomJLabel2.setFont(Font.getFont("Arial"));
         randomJLabel2.setBounds(300, 30, 300, 50);
         
-        randomJButton.setText("{amount} Pointers | Buy for {price}");
-        randomJButton.setFont(Font.getFont("Arial"));
-        randomJButton.setBounds(700, 20, 250, 20);
-        randomJButton.setEnabled(false);
+        pointerBuyButton.setText("0 Pointers | Buy for 15 C");
+        pointerBuyButton.setFont(Font.getFont("Arial"));
+        pointerBuyButton.setBounds(700, 20, 250, 20);
+        pointerBuyButton.setEnabled(false);
+        pointerBuyButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                if (cookiemanager.buyPrice(Helper.helpers[0].getPriceForNextHelper()))
+                {
+                    Helper.helpers[0].onBought();
+                }
+            }
+        });
         
         // ======================================//
         // ADD COMPONENTS TO THE PANE
@@ -117,7 +128,7 @@ public class CCUserInterface
         jframe.getContentPane().add(cookie_button);
         jframe.getContentPane().add(randomJlabel);
         jframe.getContentPane().add(randomJLabel2);
-        jframe.getContentPane().add(randomJButton);
+        jframe.getContentPane().add(pointerBuyButton);
     }
     
     public void updateUI()
@@ -126,10 +137,27 @@ public class CCUserInterface
         // UPDATE THE UI CONTENT
         // ======================================//
         
-        if (randomJlabel != null && randomJLabel2 != null)
+        if (randomJlabel != null && randomJLabel2 != null && pointerBuyButton != null)
         {
+            // ======================================//
+            // SET BUTTON / LABEL TEXTS
+            // ======================================//
+            
             randomJlabel.setText("Current Cookies: " + cookiemanager.getCurrentCookies());
             randomJLabel2.setText("Current Cookie Rate: " + Helper.getCookieRate());
+            pointerBuyButton.setText(Helper.owned[0] + " Pointers | Buy for " + Helper.helpers[0].getPriceForNextHelper());
+            
+            // ======================================//
+            // ENABLE / DISABLE BUTTONS
+            // ======================================//
+            if (cookiemanager.getCurrentCookies() >= Helper.helpers[0].getPriceForNextHelper())
+            {
+                pointerBuyButton.setEnabled(true);
+            }
+            else
+            {
+                pointerBuyButton.setEnabled(false);
+            }
         }
         
     }
