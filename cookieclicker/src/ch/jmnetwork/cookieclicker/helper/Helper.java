@@ -34,7 +34,7 @@ public class Helper
         float returnValue = 0;
         
         for (int i = 0; i < 9; i++)
-            returnValue = returnValue + (helpers[i].productivity * owned[i]);
+            returnValue += (helpers[i].productivity * owned[i]);
         
         return returnValue;
     }

@@ -84,6 +84,7 @@ public class CCUserInterface
         jframe.getContentPane().setLayout(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setLocationRelativeTo(null);
+        jframe.setResizable(false);
         
         cookie_button.setBounds(20, 20, 265, 265);
         cookie_button.setIcon(new ImageIcon("cookie.png", "This is a cookie"));
@@ -144,7 +145,7 @@ public class CCUserInterface
             // ======================================//
             
             randomJlabel.setText("Current Cookies: " + cookiemanager.getCurrentCookies());
-            randomJLabel2.setText("Current Cookie Rate: " + Helper.getCookieRate());
+            randomJLabel2.setText("Current Cookie Rate: " + onlyOneAfterComma(Helper.getCookieRate()));
             pointerBuyButton.setText(Helper.owned[0] + " Pointers | Buy for " + Helper.helpers[0].getPriceForNextHelper());
             
             // ======================================//
@@ -160,5 +161,12 @@ public class CCUserInterface
             }
         }
         
+    }
+    
+    private float onlyOneAfterComma(float input)
+    {
+        float x = (float) (Math.floor(input * 10F) / 10F);
+        
+        return x;
     }
 }
