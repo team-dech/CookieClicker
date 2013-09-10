@@ -27,6 +27,7 @@ public class CCUserInterface
     private static JButton cookie_button;
     private static JLabel randomJlabel;
     private static JLabel randomJLabel2;
+    private static JButton randomJButton;
     
     public CCUserInterface(CookieManager cookieManager)
     {
@@ -72,13 +73,14 @@ public class CCUserInterface
         cookie_button = new JButton();
         randomJlabel = new JLabel();
         randomJLabel2 = new JLabel();
+        randomJButton = new JButton();
         
         // ======================================//
         // COMPONENT SETTINGS
         // ======================================//
         
         jframe.setTitle("Java Cookie Clicker by TH3ON1YN00B and domi1819");
-        jframe.setSize(700, (20 + 265 + 60));
+        jframe.setSize(1000, (20 + 265 + 60));
         jframe.getContentPane().setLayout(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setLocationRelativeTo(null);
@@ -103,6 +105,11 @@ public class CCUserInterface
         randomJLabel2.setFont(Font.getFont("Arial"));
         randomJLabel2.setBounds(300, 30, 300, 50);
         
+        randomJButton.setText("{amount} Pointers | Buy for {price}");
+        randomJButton.setFont(Font.getFont("Arial"));
+        randomJButton.setBounds(700, 20, 250, 20);
+        randomJButton.setEnabled(false);
+        
         // ======================================//
         // ADD COMPONENTS TO THE PANE
         // ======================================//
@@ -110,6 +117,7 @@ public class CCUserInterface
         jframe.getContentPane().add(cookie_button);
         jframe.getContentPane().add(randomJlabel);
         jframe.getContentPane().add(randomJLabel2);
+        jframe.getContentPane().add(randomJButton);
     }
     
     public void updateUI()
