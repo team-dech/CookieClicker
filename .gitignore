@@ -1,8 +1,4 @@
 #GITIGNORE for CookieClicker
 
-.metadata/
-cookieclicker/bin/ch/jmnetwork/cookieclicker/CookieClickerMain.class
-cookieclicker/bin/ch/jmnetwork/cookieclicker/ui/CCUserInterface$1.class
-cookieclicker/bin/ch/jmnetwork/cookieclicker/ui/CCUserInterface$2.class
-cookieclicker/bin/ch/jmnetwork/cookieclicker/helper/Helper.class
-cookieclicker/bin/ch/jmnetwork/cookieclicker/ui/CCUserInterface.class
+.metadata/*
+cookieclicker/bin/*
