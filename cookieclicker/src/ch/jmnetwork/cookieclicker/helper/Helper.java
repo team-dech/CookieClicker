@@ -7,7 +7,7 @@ public class Helper
     { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     
     public float productivity;
-    public int price, pBase;
+    public float price, pBase;
     
     public int helperID;
     
@@ -19,9 +19,9 @@ public class Helper
         price = pBase = pr;
     }
     
-    public int getPriceForNextHelper()
+    public long getPriceForNextHelper()
     {
-        return (int) (this.pBase * Math.pow(1.15F, Helper.owned[this.helperID]));
+        return (long) (this.pBase * Math.pow(1.15F, Helper.owned[this.helperID]));
     }
     
     public void onBought()
