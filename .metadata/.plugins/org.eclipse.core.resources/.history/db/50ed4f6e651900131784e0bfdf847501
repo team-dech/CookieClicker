@@ -1,6 +1,0 @@
-package ch.jmnetwork.cookieclicker;
-
-public class HelperShipment extends Helper
-{
-    
-}
