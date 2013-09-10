@@ -1,5 +1,7 @@
 package ch.jmnetwork.cookieclicker.helper;
 
+import ch.jmnetwork.cookieclicker.helper.achievement.AchievementEventHandler;
+
 public class Helper
 {
     public static Helper[] helpers = new Helper[9];
