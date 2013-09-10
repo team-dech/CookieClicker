@@ -2,7 +2,8 @@ package ch.jmnetwork.cookieclicker.helper.achievement;
 
 public class Achievement
 {
-    public static Achievement[] achievements = new Achievement[60];
+    public static Achievement[] achievements = new Achievement[16];
+    public static boolean[] achieved = new boolean[16];
     
     public int achievementID;
     public String achievementName, achievementDesc;
