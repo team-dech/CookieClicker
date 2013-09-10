@@ -2,6 +2,7 @@ package ch.jmnetwork.cookieclicker.util;
 
 import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.helper.Helper;
+import ch.jmnetwork.cookieclicker.helper.achievement.AchievementEventHandler;
 
 public class SaveLoadHandler
 {
@@ -18,6 +19,7 @@ public class SaveLoadHandler
     {
         ph.setProperty("CURRENT_COOKIES", cookiemanager.getCurrentCookies() + "");
         ph.setProperty("TOTAL_COOKIES", cookiemanager.getTotalCookies() + "");
+        ph.setProperty("ACHIEVEMENTS", AchievementEventHandler.save());
         ph.setProperty("POINTERS_OWNED", Helper.owned[0] + "");
         ph.setProperty("GRANDMAS_OWNED", Helper.owned[1] + "");
         ph.setProperty("FARMS_OWNED", Helper.owned[2] + "");
