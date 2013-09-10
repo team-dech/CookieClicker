@@ -40,7 +40,17 @@ public class CookieClickerMain
     
     private void handleTick()
     {
+        cookiemanager.decimalValue += Helper.getCookieRate() / TICKS_PER_SECOND;
         
+        if (cookiemanager.decimalValue >= 1.0F)
+        {
+            float rem = cookiemanager.decimalValue - (cookiemanager.decimalValue % 1);
+            
+            cookiemanager.addCookies((int)rem);
+            cookiemanager.decimalValue -= rem;
+            
+            ccui.updateUI();
+        }
     }
     
     public CookieClickerMain()

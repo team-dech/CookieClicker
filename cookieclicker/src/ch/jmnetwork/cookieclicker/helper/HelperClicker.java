@@ -8,4 +8,9 @@ public class HelperClicker extends Helper
         super(prod, pr, i);
         type = EnumHelper.CLICKER;
     }
+    
+    public static int cookiesPerClick()
+    {
+        return 1;
+    }
 }

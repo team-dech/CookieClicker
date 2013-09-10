@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 
 import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.helper.Helper;
+import ch.jmnetwork.cookieclicker.helper.HelperClicker;
 
 public class CCUserInterface
 {
@@ -89,7 +90,7 @@ public class CCUserInterface
             @Override
             public void actionPerformed(ActionEvent arg0)
             {
-                cookiemanager.addCookies(1);
+                cookiemanager.addCookies(HelperClicker.cookiesPerClick());
                 updateUI();
             }
         });
