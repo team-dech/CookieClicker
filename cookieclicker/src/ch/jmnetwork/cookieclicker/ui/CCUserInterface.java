@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +17,7 @@ import javax.swing.UIManager;
 import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.helper.HelperClicker;
+import ch.jmnetwork.cookieclicker.util.PropertiesHandler;
 
 public class CCUserInterface
 {
@@ -25,6 +28,7 @@ public class CCUserInterface
     private static CookieManager cookiemanager;
     
     private final static String FONT = "Arial";
+    private static PropertiesHandler ph = new PropertiesHandler("CCSave.xml");
     
     private static JFrame jframe;
     private static JButton cookie_button;
@@ -91,10 +95,19 @@ public class CCUserInterface
         jframe.setTitle("Java Cookie Clicker by TH3ON1YN00B and domi1819");
         jframe.setSize(1000, (20 + 265 + 60));
         jframe.getContentPane().setLayout(null);
-        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jframe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jframe.setLocationRelativeTo(null);
         jframe.setResizable(false);
         jframe.setIconImage(Toolkit.getDefaultToolkit().getImage("cookie.png"));
+        jframe.addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                saveToDisk();
+                System.exit(0);
+            }
+        });
         
         cookie_button.setBounds(20, 20, 265, 265);
         cookie_button.setIcon(new ImageIcon("cookie.png", "This is a cookie"));
@@ -257,6 +270,18 @@ public class CCUserInterface
             }
         }
         
+    }
+    
+    public void saveToDisk()
+    {
+        ph.setProperty("CURRENT_COOKIES", cookiemanager.getCurrentCookies() + "");
+        ph.setProperty("TOTAL_COOKIES", cookiemanager.getTotalCookies() + "");
+        ph.setProperty("POINTERS_OWNED", Helper.owned[0] + "");
+        ph.setProperty("GRANDMAS_OWNED", Helper.owned[1] + "");
+        ph.setProperty("FARMS_OWNED", Helper.owned[2] + "");
+        ph.setProperty("FACTORYS_OWNED", Helper.owned[3] + "");
+        
+        ph.saveProperties();
     }
     
     private float onlyOneAfterComma(float input)
