@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 
 import ch.jmnetwork.cookieclicker.CookieManager;
+import ch.jmnetwork.cookieclicker.helper.Helper;
 
 public class CCUserInterface
 {
@@ -24,6 +25,7 @@ public class CCUserInterface
     private static JFrame jframe;
     private static JButton cookie_button;
     private static JLabel randomJlabel;
+    private static JLabel randomJLabel2;
     
     public CCUserInterface(CookieManager cookieManager)
     {
@@ -68,6 +70,7 @@ public class CCUserInterface
         jframe = new JFrame();
         cookie_button = new JButton();
         randomJlabel = new JLabel();
+        randomJLabel2 = new JLabel();
         
         // ======================================//
         // COMPONENT SETTINGS
@@ -95,12 +98,17 @@ public class CCUserInterface
         randomJlabel.setFont(Font.getFont("Arial"));
         randomJlabel.setBounds(300, 20, 300, 50);
         
+        randomJLabel2.setText("");
+        randomJLabel2.setFont(Font.getFont("Arial"));
+        randomJLabel2.setBounds(300, 30, 300, 50);
+        
         // ======================================//
         // ADD COMPONENTS TO THE PANE
         // ======================================//
         
         jframe.getContentPane().add(cookie_button);
         jframe.getContentPane().add(randomJlabel);
+        jframe.getContentPane().add(randomJLabel2);
     }
     
     public void updateUI()
@@ -109,9 +117,10 @@ public class CCUserInterface
         // UPDATE THE UI CONTENT
         // ======================================//
         
-        if (randomJlabel != null)
+        if (randomJlabel != null && randomJLabel2 != null)
         {
-            randomJlabel.setText(cookiemanager.getCurrentCookies() + "");
+            randomJlabel.setText("Current Cookies: " + cookiemanager.getCurrentCookies());
+            randomJLabel2.setText("Current Cookie Rate: " + Helper.getCookieRate());
         }
         
     }
