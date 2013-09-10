@@ -46,10 +46,8 @@ public class CookieClickerMain
         {
             float rem = cookiemanager.decimalValue - (cookiemanager.decimalValue % 1);
             
-            cookiemanager.addCookies((int)rem);
+            cookiemanager.addCookies((int) rem);
             cookiemanager.decimalValue -= rem;
-            
-            ccui.updateUI();
         }
     }
     

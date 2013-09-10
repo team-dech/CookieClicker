@@ -2,21 +2,24 @@ package ch.jmnetwork.cookieclicker;
 
 public class CookieManager
 {
-    private int cookiesTotal = 0, cookiesCurrent = 0;
+    private long cookiesTotal = 0, cookiesCurrent = 0;
     public float decimalValue;
     
     public void addCookies(int cookiesAmount)
     {
-        cookiesTotal += cookiesAmount;
-        cookiesCurrent += cookiesAmount;
+        if (cookiesCurrent + cookiesAmount < Long.MAX_VALUE)
+        {
+            cookiesTotal += cookiesAmount;
+            cookiesCurrent += cookiesAmount;
+        }
     }
     
-    public int getCurrentCookies()
+    public long getCurrentCookies()
     {
         return cookiesCurrent;
     }
     
-    public boolean buyPrice(int cookiesPrice)
+    public boolean buyPrice(long cookiesPrice)
     {
         if (cookiesCurrent >= cookiesPrice)
         {
@@ -29,7 +32,7 @@ public class CookieManager
         }
     }
     
-    public int getTotalCookies()
+    public long getTotalCookies()
     {
         return cookiesTotal;
     }

@@ -3,7 +3,8 @@ package ch.jmnetwork.cookieclicker.helper;
 public class Helper
 {
     public static Helper[] helpers = new Helper[9];
-    public static int[] owned = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static int[] owned = new int[]
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     
     public float productivity;
     public int price, pBase;
@@ -20,7 +21,7 @@ public class Helper
     
     public int getPriceForNextHelper()
     {
-        return (int)(this.pBase * Math.pow(1.15F, Helper.owned[this.helperID]));
+        return (int) (this.pBase * Math.pow(1.15F, Helper.owned[this.helperID]));
     }
     
     public void onBought()
@@ -32,7 +33,7 @@ public class Helper
     {
         float returnValue = 0;
         
-        for (int i = 0; i < 9; i++) 
+        for (int i = 0; i < 9; i++)
             returnValue = returnValue + (helpers[i].productivity * owned[i]);
         
         return returnValue;
