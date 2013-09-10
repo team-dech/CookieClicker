@@ -3,6 +3,7 @@ package ch.jmnetwork.cookieclicker;
 public class CookieManager
 {
     private int cookiesTotal = 0, cookiesCurrent = 0;
+    public float decimalValue;
     
     public void addCookies(int cookiesAmount)
     {
