@@ -2,7 +2,34 @@ package ch.jmnetwork.cookieclicker;
 
 public class CookieManager
 {
-    public static CookieManager instance;
+    private int cookiesTotal = 0, cookiesCurrent = 0;
     
-    public int cookiesTotal, cookiesCurrent, currentRate;
+    public void addCookies(int cookiesAmount)
+    {
+        cookiesTotal += cookiesAmount;
+        cookiesCurrent += cookiesAmount;
+    }
+    
+    public int getCurrentCookies()
+    {
+        return cookiesCurrent;
+    }
+    
+    public boolean buyPrice(int cookiesPrice)
+    {
+        if (cookiesCurrent >= cookiesPrice)
+        {
+            cookiesCurrent -= cookiesPrice;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public int getTotalCookies()
+    {
+        return cookiesTotal;
+    }
 }

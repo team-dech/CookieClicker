@@ -11,18 +11,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 
+import ch.jmnetwork.cookieclicker.CookieManager;
+
 public class CCUserInterface
 {
     // ======================================//
     // VARIABLES
     // ======================================//
     
+    private static CookieManager cookiemanager;
+    
     private static JFrame jframe;
     private static JButton cookie_button;
     private static JLabel randomJlabel;
     
-    public CCUserInterface()
+    public CCUserInterface(CookieManager cookieManager)
     {
+        cookiemanager = cookieManager;
+        
         EventQueue.invokeLater(new Runnable()
         {
             @Override
@@ -80,7 +86,8 @@ public class CCUserInterface
             @Override
             public void actionPerformed(ActionEvent arg0)
             {
-                randomJlabel.setText("" + (Integer.parseInt(randomJlabel.getText()) + 1));
+                cookiemanager.addCookies(1);
+                updateUI();
             }
         });
         
@@ -96,11 +103,16 @@ public class CCUserInterface
         jframe.getContentPane().add(randomJlabel);
     }
     
-    public void setCookieLevel(int cookieLevel)
+    public void updateUI()
     {
+        // ======================================//
+        // UPDATE THE UI CONTENT
+        // ======================================//
+        
         if (randomJlabel != null)
         {
-            randomJlabel.setText(cookieLevel + "");
+            randomJlabel.setText(cookiemanager.getCurrentCookies() + "");
         }
+        
     }
 }

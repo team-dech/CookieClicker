@@ -10,14 +10,13 @@ public class CookieClickerMain
     private static long lastTime = 0;
     private static long thisTime = 0;
     private static CCUserInterface ccui;
-    private static int i = 0;
+    private static CookieManager cookiemanager = new CookieManager();
     
     public static void main(String[] args)
     {
         INSTANCE = new CookieClickerMain();
-        CookieManager.instance = new CookieManager();
         
-        ccui = new CCUserInterface();
+        ccui = new CCUserInterface(cookiemanager);
         
         while (true)
         {
@@ -33,8 +32,8 @@ public class CookieClickerMain
                 // ======================================//
                 
                 // DEBUG START
-                ccui.setCookieLevel(i);
-                i++;
+                // cookiemanager.addCookies(1);
+                // ccui.updateUI();
                 // DEBUG END
                 
                 lastTime = System.nanoTime();
@@ -47,13 +46,6 @@ public class CookieClickerMain
         Helper.registerHelpers();
     }
     
-    /**
-     * Convert a nanoTime to milliseconds
-     * 
-     * @param nanoTime
-     *            {@see System#nanoTime()}
-     * @return time in milliseconds
-     */
     public int nanoToMilliseconds(long nanoTime)
     {
         return (int) (nanoTime / 1000000);
