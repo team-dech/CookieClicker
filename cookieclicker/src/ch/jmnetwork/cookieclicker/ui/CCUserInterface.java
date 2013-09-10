@@ -2,6 +2,7 @@ package ch.jmnetwork.cookieclicker.ui;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,11 +24,16 @@ public class CCUserInterface
     
     private static CookieManager cookiemanager;
     
+    private final static String FONT = "Arial";
+    
     private static JFrame jframe;
     private static JButton cookie_button;
     private static JLabel randomJlabel;
     private static JLabel randomJLabel2;
     private static JButton pointerBuyButton;
+    private static JButton grandmaBuyButton;
+    private static JButton farmBuyButton;
+    private static JButton factoryBuyButton;
     
     public CCUserInterface(CookieManager cookieManager)
     {
@@ -74,6 +80,9 @@ public class CCUserInterface
         randomJlabel = new JLabel();
         randomJLabel2 = new JLabel();
         pointerBuyButton = new JButton();
+        grandmaBuyButton = new JButton();
+        farmBuyButton = new JButton();
+        factoryBuyButton = new JButton();
         
         // ======================================//
         // COMPONENT SETTINGS
@@ -85,6 +94,7 @@ public class CCUserInterface
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setLocationRelativeTo(null);
         jframe.setResizable(false);
+        jframe.setIconImage(Toolkit.getDefaultToolkit().getImage("cookie.png"));
         
         cookie_button.setBounds(20, 20, 265, 265);
         cookie_button.setIcon(new ImageIcon("cookie.png", "This is a cookie"));
@@ -99,15 +109,15 @@ public class CCUserInterface
         });
         
         randomJlabel.setText("0");
-        randomJlabel.setFont(Font.getFont("Arial"));
+        randomJlabel.setFont(Font.getFont(FONT));
         randomJlabel.setBounds(300, 20, 300, 50);
         
         randomJLabel2.setText("");
-        randomJLabel2.setFont(Font.getFont("Arial"));
+        randomJLabel2.setFont(Font.getFont(FONT));
         randomJLabel2.setBounds(300, 30, 300, 50);
         
-        pointerBuyButton.setText("0 Pointers | Buy for 15 C");
-        pointerBuyButton.setFont(Font.getFont("Arial"));
+        pointerBuyButton.setText("POINTERS_HERE");
+        pointerBuyButton.setFont(Font.getFont(FONT));
         pointerBuyButton.setBounds(700, 20, 250, 20);
         pointerBuyButton.setEnabled(false);
         pointerBuyButton.addActionListener(new ActionListener()
@@ -115,9 +125,57 @@ public class CCUserInterface
             @Override
             public void actionPerformed(ActionEvent arg0)
             {
-                if (cookiemanager.buyPrice(Helper.helpers[0].getPriceForNextHelper()))
+                if (cookiemanager.buyPrice(Helper.getPriceForHelper(0)))
                 {
                     Helper.helpers[0].onBought();
+                }
+            }
+        });
+        
+        grandmaBuyButton.setText("GRANDMAS_HERE");
+        grandmaBuyButton.setFont(Font.getFont(FONT));
+        grandmaBuyButton.setBounds(700, 42, 250, 20);
+        grandmaBuyButton.setEnabled(false);
+        grandmaBuyButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (cookiemanager.buyPrice(Helper.getPriceForHelper(1)))
+                {
+                    Helper.helpers[1].onBought();
+                }
+            }
+        });
+        
+        farmBuyButton.setText("FARMS_HERE");
+        farmBuyButton.setFont(Font.getFont(FONT));
+        farmBuyButton.setBounds(700, 64, 250, 20);
+        farmBuyButton.setEnabled(false);
+        farmBuyButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (cookiemanager.buyPrice(Helper.getPriceForHelper(2)))
+                {
+                    Helper.helpers[2].onBought();
+                }
+            }
+        });
+        
+        factoryBuyButton.setText("FACTORYS_HERE");
+        factoryBuyButton.setFont(Font.getFont(FONT));
+        factoryBuyButton.setBounds(700, 86, 250, 20);
+        factoryBuyButton.setEnabled(false);
+        factoryBuyButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                if (cookiemanager.buyPrice(Helper.getPriceForHelper(3)))
+                {
+                    Helper.helpers[3].onBought();
                 }
             }
         });
@@ -130,6 +188,9 @@ public class CCUserInterface
         jframe.getContentPane().add(randomJlabel);
         jframe.getContentPane().add(randomJLabel2);
         jframe.getContentPane().add(pointerBuyButton);
+        jframe.getContentPane().add(grandmaBuyButton);
+        jframe.getContentPane().add(farmBuyButton);
+        jframe.getContentPane().add(factoryBuyButton);
     }
     
     public void updateUI()
@@ -138,7 +199,7 @@ public class CCUserInterface
         // UPDATE THE UI CONTENT
         // ======================================//
         
-        if (randomJlabel != null && randomJLabel2 != null && pointerBuyButton != null)
+        if (randomJlabel != null && randomJLabel2 != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null)
         {
             // ======================================//
             // SET BUTTON / LABEL TEXTS
@@ -146,18 +207,53 @@ public class CCUserInterface
             
             randomJlabel.setText("Current Cookies: " + cookiemanager.getCurrentCookies());
             randomJLabel2.setText("Current Cookie Rate: " + onlyOneAfterComma(Helper.getCookieRate()));
-            pointerBuyButton.setText(Helper.owned[0] + " Pointers | Buy for " + Helper.helpers[0].getPriceForNextHelper());
+            pointerBuyButton.setText(Helper.owned[0] + " Pointers | Buy for " + Helper.getPriceForHelper(0));
+            grandmaBuyButton.setText(Helper.owned[1] + " Grandmas | Buy for " + Helper.getPriceForHelper(1));
+            farmBuyButton.setText(Helper.owned[2] + " Farms | Buy for " + Helper.getPriceForHelper(2));
+            factoryBuyButton.setText(Helper.owned[3] + " Factorys | Buy for " + Helper.getPriceForHelper(3));
             
             // ======================================//
             // ENABLE / DISABLE BUTTONS
             // ======================================//
-            if (cookiemanager.getCurrentCookies() >= Helper.helpers[0].getPriceForNextHelper())
+            
+            /* POINTERS */
+            if (cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(0))
             {
                 pointerBuyButton.setEnabled(true);
             }
             else
             {
                 pointerBuyButton.setEnabled(false);
+            }
+            
+            /* GRANDMAS */
+            if (cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(1))
+            {
+                grandmaBuyButton.setEnabled(true);
+            }
+            else
+            {
+                grandmaBuyButton.setEnabled(false);
+            }
+            
+            /* FARMS */
+            if (cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(2))
+            {
+                farmBuyButton.setEnabled(true);
+            }
+            else
+            {
+                farmBuyButton.setEnabled(false);
+            }
+            
+            /* FACTORYS */
+            if (cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(3))
+            {
+                factoryBuyButton.setEnabled(true);
+            }
+            else
+            {
+                factoryBuyButton.setEnabled(false);
             }
         }
         

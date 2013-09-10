@@ -17,6 +17,7 @@ public class Helper
     {
         productivity = prod;
         price = pBase = pr;
+        helperID = ID;
     }
     
     public long getPriceForNextHelper()
@@ -50,5 +51,10 @@ public class Helper
         helpers[6] = new HelperAlchemyLab(400F, 200000, 6);
         helpers[7] = new HelperPortal(6666F, 1666666, 7);
         helpers[8] = new HelperTimeMachine(98765F, 123456789, 8);
+    }
+    
+    public static long getPriceForHelper(int helperID)
+    {
+        return Helper.helpers[helperID].getPriceForNextHelper();
     }
 }
