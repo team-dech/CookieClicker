@@ -31,16 +31,30 @@ public class CookieClickerMain
                 // STUFF TO RUN EACH TICK
                 // ======================================//
                 
+<<<<<<< HEAD
                 // DEBUG START
                 // cookiemanager.addCookies(1);
                 // ccui.updateUI();
                 // DEBUG END
+=======
+                INSTANCE.handleTick();
+                
+                /* DEBUG START
+                ccui.setCookieLevel(i);
+                i++;
+                 DEBUG END */
+>>>>>>> 227cf4786c2ce6ba33ac8e3be63130cdc77aa5ef
                 
                 lastTime = System.nanoTime();
             }
         }
     }
     
+    private void handleTick()
+    {
+        
+    }
+
     public CookieClickerMain()
     {
         Helper.registerHelpers();
