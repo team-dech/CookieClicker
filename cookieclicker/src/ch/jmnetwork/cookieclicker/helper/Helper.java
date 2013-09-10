@@ -23,6 +23,21 @@ public class Helper
         return (int)(this.pBase * Math.pow(1.15F, Helper.owned[this.helperID]));
     }
     
+    public void onBought()
+    {
+        Helper.owned[this.helperID]++;
+    }
+    
+    public static float getCookieRate()
+    {
+        float returnValue = 0;
+        
+        for (int i = 0; i < 0; i++) 
+            returnValue = returnValue + (helpers[i].productivity * owned[i]);
+        
+        return returnValue;
+    }
+    
     public static void registerHelpers()
     {
         helpers[0] = new HelperClicker(0.1F, 15, 0);
