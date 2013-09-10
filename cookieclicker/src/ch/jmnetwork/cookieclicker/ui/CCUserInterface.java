@@ -17,7 +17,7 @@ import javax.swing.UIManager;
 import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.helper.HelperClicker;
-import ch.jmnetwork.cookieclicker.util.PropertiesHandler;
+import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
 
 public class CCUserInterface
 {
@@ -26,9 +26,9 @@ public class CCUserInterface
     // ======================================//
     
     private static CookieManager cookiemanager;
+    private static SaveLoadHandler slHandler;
     
     private final static String FONT = "Arial";
-    private static PropertiesHandler ph = new PropertiesHandler("CCSave.xml");
     
     private static JFrame jframe;
     private static JButton cookie_button;
@@ -39,9 +39,10 @@ public class CCUserInterface
     private static JButton farmBuyButton;
     private static JButton factoryBuyButton;
     
-    public CCUserInterface(CookieManager cookieManager)
+    public CCUserInterface(CookieManager cookieManager, SaveLoadHandler slhandler)
     {
         cookiemanager = cookieManager;
+        slHandler = slhandler;
         
         EventQueue.invokeLater(new Runnable()
         {
@@ -104,7 +105,7 @@ public class CCUserInterface
             @Override
             public void windowClosing(WindowEvent e)
             {
-                saveToDisk();
+                slHandler.saveToDisk();
                 System.exit(0);
             }
         });
@@ -270,18 +271,6 @@ public class CCUserInterface
             }
         }
         
-    }
-    
-    public void saveToDisk()
-    {
-        ph.setProperty("CURRENT_COOKIES", cookiemanager.getCurrentCookies() + "");
-        ph.setProperty("TOTAL_COOKIES", cookiemanager.getTotalCookies() + "");
-        ph.setProperty("POINTERS_OWNED", Helper.owned[0] + "");
-        ph.setProperty("GRANDMAS_OWNED", Helper.owned[1] + "");
-        ph.setProperty("FARMS_OWNED", Helper.owned[2] + "");
-        ph.setProperty("FACTORYS_OWNED", Helper.owned[3] + "");
-        
-        ph.saveProperties();
     }
     
     private float onlyOneAfterComma(float input)

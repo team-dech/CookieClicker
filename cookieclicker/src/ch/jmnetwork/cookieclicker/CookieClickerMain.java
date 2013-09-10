@@ -2,6 +2,7 @@ package ch.jmnetwork.cookieclicker;
 
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.ui.CCUserInterface;
+import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
 
 public class CookieClickerMain
 {
@@ -11,12 +12,13 @@ public class CookieClickerMain
     private static long thisTime = 0;
     private static CCUserInterface ccui;
     private static CookieManager cookiemanager = new CookieManager();
+    private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
     
     public static void main(String[] args)
     {
         INSTANCE = new CookieClickerMain();
         
-        ccui = new CCUserInterface(cookiemanager);
+        ccui = new CCUserInterface(cookiemanager, slhandler);
         
         while (true)
         {
