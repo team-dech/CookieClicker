@@ -42,6 +42,10 @@ public class CCUserInterface
     private static JButton farmBuyButton;
     private static JButton factoryBuyButton;
     private static JButton mineBuyButton;
+    private static JButton shipmentBuyButton;
+    private static JButton alchemyLabBuyButton;
+    private static JButton portalBuyButton;
+    private static JButton timeMachineBuyButton;
     
     public CCUserInterface(CookieManager cookieManager, SaveLoadHandler slhandler)
     {
@@ -94,6 +98,10 @@ public class CCUserInterface
         farmBuyButton = new JButton();
         factoryBuyButton = new JButton();
         mineBuyButton = new JButton();
+        shipmentBuyButton = new JButton();
+        alchemyLabBuyButton = new JButton();
+        portalBuyButton = new JButton();
+        timeMachineBuyButton = new JButton();
         
         // ======================================//
         // COMPONENT SETTINGS
@@ -224,6 +232,58 @@ public class CCUserInterface
             }
         });
         
+        shipmentBuyButton.setText("SHIPMENTS_HERE");
+        shipmentBuyButton.setFont(Font.getFont(FONT));
+        shipmentBuyButton.setBounds(700, 130, 250, 20);
+        shipmentBuyButton.setEnabled(false);
+        shipmentBuyButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                Helper.helpers[5].onBought();
+            }
+        });
+        
+        alchemyLabBuyButton.setText("ALCHEMYLABS_HERE");
+        alchemyLabBuyButton.setFont(Font.getFont(FONT));
+        alchemyLabBuyButton.setBounds(700, 152, 250, 20);
+        alchemyLabBuyButton.setEnabled(false);
+        alchemyLabBuyButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                Helper.helpers[6].onBought();
+            }
+        });
+        
+        portalBuyButton.setText("PORTALS_HERE");
+        portalBuyButton.setFont(Font.getFont(FONT));
+        portalBuyButton.setBounds(700, 174, 250, 20);
+        portalBuyButton.setEnabled(false);
+        portalBuyButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                Helper.helpers[7].onBought();
+            }
+        });
+        
+        timeMachineBuyButton.setText("TIMEMACHINES_HERE");
+        timeMachineBuyButton.setFont(Font.getFont(FONT));
+        timeMachineBuyButton.setBounds(700, 196, 250, 20);
+        timeMachineBuyButton.setEnabled(false);
+        timeMachineBuyButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                Helper.helpers[8].onBought();
+            }
+        });
+        
         // ======================================//
         // ADD COMPONENTS TO THE PANE
         // ======================================//
@@ -237,6 +297,10 @@ public class CCUserInterface
         jframe.getContentPane().add(factoryBuyButton);
         jframe.getContentPane().add(mineBuyButton);
         jframe.getContentPane().add(infoLabel);
+        jframe.getContentPane().add(shipmentBuyButton);
+        jframe.getContentPane().add(alchemyLabBuyButton);
+        jframe.getContentPane().add(portalBuyButton);
+        jframe.getContentPane().add(timeMachineBuyButton);
     }
     
     public void updateUI()
@@ -245,7 +309,7 @@ public class CCUserInterface
         // UPDATE THE UI CONTENT
         // ======================================//
         
-        if (currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null && mineBuyButton != null)
+        if (currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null && mineBuyButton != null && shipmentBuyButton != null && alchemyLabBuyButton != null && portalBuyButton != null && timeMachineBuyButton != null)
         {
             // ======================================//
             // SET BUTTON / LABEL TEXTS
@@ -258,6 +322,10 @@ public class CCUserInterface
             farmBuyButton.setText(Helper.owned[2] + " Farms | Buy for " + Helper.getPriceForHelper(2));
             factoryBuyButton.setText(Helper.owned[3] + " Factorys | Buy for " + Helper.getPriceForHelper(3));
             mineBuyButton.setText(Helper.owned[4] + " Mines | Buy for " + Helper.getPriceForHelper(4));
+            shipmentBuyButton.setText(Helper.owned[5] + " Shipments | Buy for " + Helper.getPriceForHelper(5));
+            alchemyLabBuyButton.setText(Helper.owned[6] + " Alchemy Labs | Buy for " + Helper.getPriceForHelper(6));
+            portalBuyButton.setText(Helper.owned[7] + " Portals | Buy for " + Helper.getPriceForHelper(7));
+            timeMachineBuyButton.setText(Helper.owned[8] + " Time Machines | Buy for " + Helper.getPriceForHelper(8));
             
             // ======================================//
             // ENABLE / DISABLE BUTTONS
@@ -311,6 +379,16 @@ public class CCUserInterface
             else
             {
                 mineBuyButton.setEnabled(false);
+            }
+            
+            /* SHIPMENTS */
+            if (cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(5))
+            {
+                shipmentBuyButton.setEnabled(true);
+            }
+            else
+            {
+                shipmentBuyButton.setEnabled(false);
             }
         }
         
