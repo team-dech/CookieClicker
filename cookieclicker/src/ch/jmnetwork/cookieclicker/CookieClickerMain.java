@@ -70,7 +70,7 @@ public class CookieClickerMain
         if (!f.exists())
         {
             new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie.png", "cookie.png");
-            ccui.setInfoMessage("The Cookie Image was Downloaded, please restart!");
+            ccui.setInfoMessage("The cookie image was downloaded, please restart!");
         }
     }
     

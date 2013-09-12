@@ -25,6 +25,11 @@ public class SaveLoadHandler
         ph.setProperty("GRANDMAS_OWNED", Helper.owned[1] + "");
         ph.setProperty("FARMS_OWNED", Helper.owned[2] + "");
         ph.setProperty("FACTORYS_OWNED", Helper.owned[3] + "");
+        ph.setProperty("MINES_OWNED", Helper.owned[4] + "");
+        ph.setProperty("SHIPMENTS_OWNED", Helper.owned[5] + "");
+        ph.setProperty("ALCHEMYLABSS_OWNED", Helper.owned[6] + "");
+        ph.setProperty("PORTALS_OWNED", Helper.owned[7] + "");
+        ph.setProperty("TIMEMACHINES_OWNED", Helper.owned[8] + "");
         
         ph.saveProperties();
     }
@@ -39,6 +44,11 @@ public class SaveLoadHandler
             Helper.owned[1] = Integer.parseInt(ph.getProperty("GRANDMAS_OWNED"));
             Helper.owned[2] = Integer.parseInt(ph.getProperty("FARMS_OWNED"));
             Helper.owned[3] = Integer.parseInt(ph.getProperty("FACTORYS_OWNED"));
+            Helper.owned[4] = Integer.parseInt(ph.getProperty("MINES_OWNED"));
+            Helper.owned[5] = Integer.parseInt(ph.getProperty("SHIPMENTS_OWNED"));
+            Helper.owned[6] = Integer.parseInt(ph.getProperty("ALCHEMYLABS_OWNED"));
+            Helper.owned[7] = Integer.parseInt(ph.getProperty("PORTALS_OWNED"));
+            Helper.owned[8] = Integer.parseInt(ph.getProperty("TIMEMACHINES_OWNED"));
         }
         catch (Exception e)
         {
