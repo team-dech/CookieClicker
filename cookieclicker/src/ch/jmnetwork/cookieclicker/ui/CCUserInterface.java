@@ -1,5 +1,6 @@
 package ch.jmnetwork.cookieclicker.ui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -118,6 +119,7 @@ public class CCUserInterface
         infoLabel.setText("");
         infoLabel.setFont(Font.getFont(FONT));
         infoLabel.setBounds(40 + 265, 270, 300, 50);
+        infoLabel.setForeground(Color.RED);
         
         cookie_button.setBounds(20, 20, 265, 265);
         cookie_button.setBorder(BorderFactory.createEmptyBorder());
@@ -316,7 +318,7 @@ public class CCUserInterface
     
     public void setInfoMessage(String message)
     {
-        infoLabel.setText(message);
+        infoLabel.setText("<html><strong>" + message + "</strong></html>");
     }
     
     private float onlyOneAfterComma(float input)

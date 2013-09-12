@@ -43,7 +43,7 @@ public class SaveLoadHandler
             Helper.owned[0] = Integer.parseInt(ph.getProperty("POINTERS_OWNED", "0"));
             Helper.owned[1] = Integer.parseInt(ph.getProperty("GRANDMAS_OWNED", "0"));
             Helper.owned[2] = Integer.parseInt(ph.getProperty("FARMS_OWNED", "0"));
-            Helper.owned[3] = Integer.parseInt(ph.getProperty("FACTORYS_OWNED"));
+            Helper.owned[3] = Integer.parseInt(ph.getProperty("FACTORYS_OWNED", "0"));
             Helper.owned[4] = Integer.parseInt(ph.getProperty("MINES_OWNED", "0"));
             Helper.owned[5] = Integer.parseInt(ph.getProperty("SHIPMENTS_OWNED", "0"));
             Helper.owned[6] = Integer.parseInt(ph.getProperty("ALCHEMYLABS_OWNED", "0"));
