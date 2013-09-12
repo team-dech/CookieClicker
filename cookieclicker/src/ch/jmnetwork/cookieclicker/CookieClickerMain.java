@@ -77,8 +77,15 @@ public class CookieClickerMain
         File f = new File("cookie.png");
         if (!f.exists())
         {
-            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie.png", "cookie.png");
-            ccui.setInfoMessage("The cookie image was downloaded, please restart!");
+            if (new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie.png", "cookie.png") != null)
+            {
+                ccui.setInfoMessage("The cookie image was downloaded, please restart!");
+            }
+            else
+            {
+                ccui.setInfoMessage("No internet connection detected - please connect to the internet for the first time!");
+            }
+            
         }
     }
     
