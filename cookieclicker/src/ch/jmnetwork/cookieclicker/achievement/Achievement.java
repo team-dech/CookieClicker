@@ -1,4 +1,4 @@
-package ch.jmnetwork.cookieclicker.helper.achievement;
+package ch.jmnetwork.cookieclicker.achievement;
 
 public class Achievement
 {

@@ -1,6 +1,6 @@
 package ch.jmnetwork.cookieclicker.helper;
 
-import ch.jmnetwork.cookieclicker.helper.achievement.AchievementEventHandler;
+import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
 
 @SuppressWarnings("unused")
 public class Helper

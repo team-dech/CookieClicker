@@ -1,9 +1,9 @@
 package ch.jmnetwork.cookieclicker.util;
 
 import ch.jmnetwork.cookieclicker.CookieManager;
+import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
-import ch.jmnetwork.cookieclicker.helper.achievement.AchievementEventHandler;
 
 public class SaveLoadHandler
 {
