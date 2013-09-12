@@ -3,9 +3,12 @@ package ch.jmnetwork.cookieclicker.ui;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -31,6 +34,10 @@ public class CCUserInterface
     private static SaveLoadHandler slHandler;
     
     private final static String FONT = "Arial";
+    private final static Image cookie = Toolkit.getDefaultToolkit().getImage("cookie.png");
+    private final static Image cookie_small = Toolkit.getDefaultToolkit().getImage("cookie_small.png");
+    private final static ImageIcon cookieImageIcon = new ImageIcon(cookie);
+    private final static ImageIcon cookie_smallImageIcon = new ImageIcon(cookie_small);
     
     private static JFrame jframe;
     private static JLabel infoLabel;
@@ -113,7 +120,7 @@ public class CCUserInterface
         jframe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jframe.setLocationRelativeTo(null);
         jframe.setResizable(false);
-        jframe.setIconImage(Toolkit.getDefaultToolkit().getImage("cookie.png"));
+        jframe.setIconImage(cookie);
         jframe.addWindowListener(new WindowAdapter()
         {
             @Override
@@ -142,6 +149,35 @@ public class CCUserInterface
                 cookiemanager.addCookies(HelperClicker.cookiesPerClick());
                 updateUI();
             }
+        });
+        cookie_button.addMouseListener(new MouseListener()
+        {
+            
+            @Override
+            public void mouseReleased(MouseEvent arg0)
+            {
+                cookie_button.setIcon(cookieImageIcon);
+            }
+            
+            @Override
+            public void mousePressed(MouseEvent arg0)
+            {
+                cookie_button.setIcon(cookie_smallImageIcon);
+            }
+            
+            @Override
+            public void mouseExited(MouseEvent arg0)
+            {
+            }
+            
+            public void mouseEntered(MouseEvent arg0)
+            {
+            }
+            
+            public void mouseClicked(MouseEvent arg0)
+            {
+            }
+            
         });
         
         currentCookiesLabel.setText("0");

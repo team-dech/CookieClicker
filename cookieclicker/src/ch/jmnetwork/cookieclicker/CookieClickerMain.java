@@ -77,7 +77,7 @@ public class CookieClickerMain
         File f = new File("cookie.png");
         if (!f.exists())
         {
-            if (new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie.png", "cookie.png") != null)
+            if (new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie.png", "cookie.png") != null && new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie_small.png", "cookie_small.png") != null)
             {
                 ccui.setInfoMessage("The cookie image was downloaded, please restart!");
             }
