@@ -2,6 +2,7 @@ package ch.jmnetwork.cookieclicker;
 
 import java.io.File;
 
+import ch.jmnetwork.cookieclicker.encryption.EncryptionHandler;
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.net.NetworkHelper;
@@ -16,7 +17,8 @@ public class CookieClickerMain
     private static long thisTime = 0;
     private static CCUserInterface ccui;
     private static CookieManager cookiemanager = new CookieManager();
-    private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
+    private static EncryptionHandler encHandler = new EncryptionHandler();
+    private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager, encHandler);
     
     public static void main(String[] args)
     {
