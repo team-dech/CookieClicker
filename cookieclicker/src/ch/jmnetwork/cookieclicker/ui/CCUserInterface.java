@@ -1,5 +1,6 @@
 package ch.jmnetwork.cookieclicker.ui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,6 +33,7 @@ public class CCUserInterface
     private final static String FONT = "Arial";
     
     private static JFrame jframe;
+    private static JLabel infoLabel;
     private static JButton cookie_button;
     private static JLabel currentCookiesLabel;
     private static JLabel cookieRateLabel;
@@ -82,6 +85,7 @@ public class CCUserInterface
         // ======================================//
         
         jframe = new JFrame();
+        infoLabel = new JLabel();
         cookie_button = new JButton();
         currentCookiesLabel = new JLabel();
         cookieRateLabel = new JLabel();
@@ -112,7 +116,14 @@ public class CCUserInterface
             }
         });
         
+        infoLabel.setText("");
+        infoLabel.setFont(Font.getFont(FONT));
+        infoLabel.setBounds(40 + 265, 270, 300, 50);
+        
         cookie_button.setBounds(20, 20, 265, 265);
+        cookie_button.setBorder(BorderFactory.createEmptyBorder());
+        cookie_button.setContentAreaFilled(false);
+        cookie_button.setFocusPainted(false);
         cookie_button.setIcon(new ImageIcon("cookie.png", "This is a cookie"));
         cookie_button.addActionListener(new ActionListener()
         {
@@ -224,6 +235,7 @@ public class CCUserInterface
         jframe.getContentPane().add(farmBuyButton);
         jframe.getContentPane().add(factoryBuyButton);
         jframe.getContentPane().add(mineBuyButton);
+        jframe.getContentPane().add(infoLabel);
     }
     
     public void updateUI()
@@ -301,6 +313,11 @@ public class CCUserInterface
             }
         }
         
+    }
+    
+    public void setInfoMessage(String message)
+    {
+        infoLabel.setText(message);
     }
     
     private float onlyOneAfterComma(float input)

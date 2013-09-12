@@ -1,7 +1,10 @@
 package ch.jmnetwork.cookieclicker;
 
+import java.io.File;
+
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
+import ch.jmnetwork.cookieclicker.net.NetworkHelper;
 import ch.jmnetwork.cookieclicker.ui.CCUserInterface;
 import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
 
@@ -17,8 +20,10 @@ public class CookieClickerMain
     
     public static void main(String[] args) throws CCLoadFromDiskException
     {
-        INSTANCE = new CookieClickerMain();
         ccui = new CCUserInterface(cookiemanager, slhandler);
+        downloadIcon();
+        INSTANCE = new CookieClickerMain();
+        
         slhandler.loadFromDisk();
         
         while (true)
@@ -57,6 +62,16 @@ public class CookieClickerMain
     public CookieClickerMain()
     {
         Helper.registerHelpers();
+    }
+    
+    private static void downloadIcon()
+    {
+        File f = new File("cookie.png");
+        if (!f.exists())
+        {
+            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie.png", "cookie.png");
+            ccui.setInfoMessage("The Cookie Image was Downloaded, please restart!");
+        }
     }
     
     public int nanoToMilliseconds(long nanoTime)

@@ -2,6 +2,7 @@ package ch.jmnetwork.cookieclicker.helper;
 
 import ch.jmnetwork.cookieclicker.helper.achievement.AchievementEventHandler;
 
+@SuppressWarnings("unused")
 public class Helper
 {
     public static Helper[] helpers = new Helper[9];
