@@ -241,7 +241,10 @@ public class CCUserInterface
             @Override
             public void actionPerformed(ActionEvent arg0)
             {
-                Helper.helpers[5].onBought();
+                if (cookiemanager.buyPrice(Helper.getPriceForHelper(5)))
+                {
+                    Helper.helpers[5].onBought();
+                }
             }
         });
         
@@ -254,7 +257,10 @@ public class CCUserInterface
             @Override
             public void actionPerformed(ActionEvent arg0)
             {
-                Helper.helpers[6].onBought();
+                if (cookiemanager.buyPrice(Helper.getPriceForHelper(6)))
+                {
+                    Helper.helpers[6].onBought();
+                }
             }
         });
         
@@ -267,7 +273,10 @@ public class CCUserInterface
             @Override
             public void actionPerformed(ActionEvent arg0)
             {
-                Helper.helpers[7].onBought();
+                if (cookiemanager.buyPrice(Helper.getPriceForHelper(7)))
+                {
+                    Helper.helpers[7].onBought();
+                }
             }
         });
         
@@ -280,7 +289,10 @@ public class CCUserInterface
             @Override
             public void actionPerformed(ActionEvent arg0)
             {
-                Helper.helpers[8].onBought();
+                if (cookiemanager.buyPrice(Helper.getPriceForHelper(8)))
+                {
+                    Helper.helpers[8].onBought();
+                }
             }
         });
         
