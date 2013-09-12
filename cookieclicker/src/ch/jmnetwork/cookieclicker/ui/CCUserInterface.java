@@ -402,6 +402,36 @@ public class CCUserInterface
             {
                 shipmentBuyButton.setEnabled(false);
             }
+            
+            /* ALCHEMYLAB */
+            if (cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(6))
+            {
+                alchemyLabBuyButton.setEnabled(true);
+            }
+            else
+            {
+                alchemyLabBuyButton.setEnabled(false);
+            }
+            
+            /* PORTAL */
+            if (cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(7))
+            {
+                portalBuyButton.setEnabled(true);
+            }
+            else
+            {
+                portalBuyButton.setEnabled(false);
+            }
+            
+            /* TIMEMACHINE */
+            if (cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(8))
+            {
+                timeMachineBuyButton.setEnabled(true);
+            }
+            else
+            {
+                timeMachineBuyButton.setEnabled(false);
+            }
         }
         
     }
