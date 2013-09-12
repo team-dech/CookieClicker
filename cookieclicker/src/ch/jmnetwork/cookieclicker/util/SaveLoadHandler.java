@@ -49,6 +49,7 @@ public class SaveLoadHandler
             Helper.owned[6] = Integer.parseInt(ph.getProperty("ALCHEMYLABS_OWNED", "0"));
             Helper.owned[7] = Integer.parseInt(ph.getProperty("PORTALS_OWNED", "0"));
             Helper.owned[8] = Integer.parseInt(ph.getProperty("TIMEMACHINES_OWNED", "0"));
+            AchievementEventHandler.load(ph.getProperty("ACHIEVEMENTS", "$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0"));
         }
         catch (Exception e)
         {
