@@ -3,9 +3,9 @@ package ch.jmnetwork.cookieclicker.helper;
 
 public class HelperGrandma extends Helper
 {
-    public HelperGrandma(float prod, int pr, int i)
+    public HelperGrandma(float prod, long l, int i)
     {
-        super(prod, pr, i);
+        super(prod, l, i);
         type = EnumHelper.GRANDMA;
     }
 }

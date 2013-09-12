@@ -2,9 +2,9 @@ package ch.jmnetwork.cookieclicker.helper;
 
 public class HelperPortal extends Helper
 {
-    public HelperPortal(float prod, int pr, int i)
+    public HelperPortal(float prod, long l, int i)
     {
-        super(prod, pr, i);
+        super(prod, l, i);
         type = EnumHelper.PORTAL;
     }
 }

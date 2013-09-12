@@ -10,13 +10,13 @@ public class Helper
     { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     
     public float productivity;
-    public float price, pBase;
+    public long price, pBase;
     
     public int helperID;
     
     public EnumHelper type;
     
-    public Helper(float prod, int pr, int ID)
+    public Helper(float prod, long pr, int ID)
     {
         productivity = prod;
         price = pBase = pr;
@@ -45,15 +45,15 @@ public class Helper
     
     public static void registerHelpers()
     {
-        helpers[0] = new HelperClicker(0.1F, 15, 0);
-        helpers[1] = new HelperGrandma(0.5F, 100, 1);
-        helpers[2] = new HelperFarm(2F, 500, 2);
-        helpers[3] = new HelperFactory(10F, 3000, 3);
-        helpers[4] = new HelperMine(40F, 10000, 4);
-        helpers[5] = new HelperShipment(100F, 40000, 5);
-        helpers[6] = new HelperAlchemyLab(400F, 200000, 6);
-        helpers[7] = new HelperPortal(6666F, 1666666, 7);
-        helpers[8] = new HelperTimeMachine(98765F, 123456789, 8);
+        helpers[0] = new HelperClicker(0.1F, 15L, 0);
+        helpers[1] = new HelperGrandma(0.5F, 100L, 1);
+        helpers[2] = new HelperFarm(2F, 500L, 2);
+        helpers[3] = new HelperFactory(10F, 3000L, 3);
+        helpers[4] = new HelperMine(40F, 10000L, 4);
+        helpers[5] = new HelperShipment(100F, 40000L, 5);
+        helpers[6] = new HelperAlchemyLab(400F, 200000L, 6);
+        helpers[7] = new HelperPortal(6666F, 1666666L, 7);
+        helpers[8] = new HelperTimeMachine(98765F, 123456789L, 8);
     }
     
     public static long getPriceForHelper(int helperID)
