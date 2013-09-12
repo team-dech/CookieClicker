@@ -1,5 +1,6 @@
 package ch.jmnetwork.cookieclicker;
 
+import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.ui.CCUserInterface;
 import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
@@ -14,11 +15,11 @@ public class CookieClickerMain
     private static CookieManager cookiemanager = new CookieManager();
     private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws CCLoadFromDiskException
     {
         INSTANCE = new CookieClickerMain();
-        
         ccui = new CCUserInterface(cookiemanager, slhandler);
+        slhandler.loadFromDisk();
         
         while (true)
         {

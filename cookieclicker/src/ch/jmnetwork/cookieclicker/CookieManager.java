@@ -36,4 +36,24 @@ public class CookieManager
     {
         return cookiesTotal;
     }
+    
+    /**
+     * PLEASE ONLY USE FOR SAVE / LOAD PROCESS
+     * 
+     * @param cookiestotal
+     */
+    public void setTotalCookies(long cookiestotal)
+    {
+        this.cookiesTotal = cookiestotal;
+    }
+    
+    /**
+     * PLEASE ONLY USE FOR SAVE / LOAD PROCESS
+     * 
+     * @param currentCookies
+     */
+    public void setCurrentCookies(long currentCookies)
+    {
+        this.cookiesCurrent = currentCookies;
+    }
 }
