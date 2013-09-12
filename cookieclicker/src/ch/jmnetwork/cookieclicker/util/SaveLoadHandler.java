@@ -38,21 +38,21 @@ public class SaveLoadHandler
     {
         try
         {
-            cookiemanager.setTotalCookies(Long.parseLong(ph.getProperty("TOTAL_COOKIES")));
-            cookiemanager.setCurrentCookies(Long.parseLong(ph.getProperty("CURRENT_COOKIES")));
-            Helper.owned[0] = Integer.parseInt(ph.getProperty("POINTERS_OWNED"));
-            Helper.owned[1] = Integer.parseInt(ph.getProperty("GRANDMAS_OWNED"));
-            Helper.owned[2] = Integer.parseInt(ph.getProperty("FARMS_OWNED"));
+            cookiemanager.setTotalCookies(Long.parseLong(ph.getProperty("TOTAL_COOKIES", "0")));
+            cookiemanager.setCurrentCookies(Long.parseLong(ph.getProperty("CURRENT_COOKIES", "0")));
+            Helper.owned[0] = Integer.parseInt(ph.getProperty("POINTERS_OWNED", "0"));
+            Helper.owned[1] = Integer.parseInt(ph.getProperty("GRANDMAS_OWNED", "0"));
+            Helper.owned[2] = Integer.parseInt(ph.getProperty("FARMS_OWNED", "0"));
             Helper.owned[3] = Integer.parseInt(ph.getProperty("FACTORYS_OWNED"));
-            Helper.owned[4] = Integer.parseInt(ph.getProperty("MINES_OWNED"));
-            Helper.owned[5] = Integer.parseInt(ph.getProperty("SHIPMENTS_OWNED"));
-            Helper.owned[6] = Integer.parseInt(ph.getProperty("ALCHEMYLABS_OWNED"));
-            Helper.owned[7] = Integer.parseInt(ph.getProperty("PORTALS_OWNED"));
-            Helper.owned[8] = Integer.parseInt(ph.getProperty("TIMEMACHINES_OWNED"));
+            Helper.owned[4] = Integer.parseInt(ph.getProperty("MINES_OWNED", "0"));
+            Helper.owned[5] = Integer.parseInt(ph.getProperty("SHIPMENTS_OWNED", "0"));
+            Helper.owned[6] = Integer.parseInt(ph.getProperty("ALCHEMYLABS_OWNED", "0"));
+            Helper.owned[7] = Integer.parseInt(ph.getProperty("PORTALS_OWNED", "0"));
+            Helper.owned[8] = Integer.parseInt(ph.getProperty("TIMEMACHINES_OWNED", "0"));
         }
         catch (Exception e)
         {
-            throw new CCLoadFromDiskException();
+            throw new CCLoadFromDiskException(e);
         }
         
     }

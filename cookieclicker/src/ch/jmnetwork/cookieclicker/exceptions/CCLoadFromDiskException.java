@@ -4,15 +4,16 @@ public class CCLoadFromDiskException extends Exception
 {
     private static final long serialVersionUID = 6095635912008021464L;
     
-    public CCLoadFromDiskException()
+    public CCLoadFromDiskException(Exception e)
     {
         System.err.println("[ERROR] For further information use printStackTrace()");
-        System.exit(1);
+        e.printStackTrace();
     }
     
     @Override
     public void printStackTrace()
     {
-        System.err.println("A value in savefile was changed and is no longer usable. Exiting");
+        System.err.println("A value in savefile was changed and is no longer usable.");
+        super.printStackTrace();
     }
 }

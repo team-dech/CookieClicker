@@ -18,13 +18,20 @@ public class CookieClickerMain
     private static CookieManager cookiemanager = new CookieManager();
     private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
     
-    public static void main(String[] args) throws CCLoadFromDiskException
+    public static void main(String[] args)
     {
         ccui = new CCUserInterface(cookiemanager, slhandler);
         downloadIcon();
         INSTANCE = new CookieClickerMain();
         
-        slhandler.loadFromDisk();
+        try
+        {
+            slhandler.loadFromDisk();
+        }
+        catch (CCLoadFromDiskException e)
+        {
+            e.printStackTrace();
+        }
         
         while (true)
         {
