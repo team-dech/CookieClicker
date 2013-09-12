@@ -1,7 +1,5 @@
 package ch.jmnetwork.cookieclicker.util;
 
-import java.io.File;
-
 import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
 import ch.jmnetwork.cookieclicker.encryption.EncryptionHandler;
@@ -12,13 +10,13 @@ public class SaveLoadHandler
 {
     
     private static CookieManager cookiemanager;
-    private static EncryptionHandler encryptionhandler;
+    // private static EncryptionHandler encryptionhandler;
     private static PropertiesHandler ph = new PropertiesHandler("CCSave.xml");
     
     public SaveLoadHandler(CookieManager cm, EncryptionHandler encryptionHandler)
     {
         cookiemanager = cm;
-        encryptionhandler = encryptionHandler;
+        // encryptionhandler = encryptionHandler;
     }
     
     public void saveToDisk()
@@ -37,16 +35,16 @@ public class SaveLoadHandler
         ph.setProperty("TIMEMACHINES_OWNED", Helper.owned[8] + "");
         
         ph.saveProperties();
-        new File("save.cc").delete();
-        encryptionhandler.encryptProperties("CCSave.xml", "save.cc");
-        new File("CCSave.xml").deleteOnExit();
+        // new File("save.cc").delete();
+        // encryptionhandler.encryptProperties("CCSave.xml", "save.cc");
+        // new File("CCSave.xml").deleteOnExit();
     }
     
     public void loadFromDisk() throws CCLoadFromDiskException
     {
         try
         {
-            encryptionhandler.readDecryptProperties("save.cc", "CCSave.xml");
+            // encryptionhandler.readDecryptProperties("save.cc", "CCSave.xml");
             cookiemanager.setTotalCookies(Long.parseLong(ph.getProperty("TOTAL_COOKIES", "0")));
             cookiemanager.setCurrentCookies(Long.parseLong(ph.getProperty("CURRENT_COOKIES", "0")));
             Helper.owned[0] = Integer.parseInt(ph.getProperty("POINTERS_OWNED", "0"));
@@ -59,7 +57,7 @@ public class SaveLoadHandler
             Helper.owned[7] = Integer.parseInt(ph.getProperty("PORTALS_OWNED", "0"));
             Helper.owned[8] = Integer.parseInt(ph.getProperty("TIMEMACHINES_OWNED", "0"));
             AchievementEventHandler.load(ph.getProperty("ACHIEVEMENTS", "$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0"));
-            new File("CCSave.xml").delete();
+            // new File("CCSave.xml").delete();
         }
         catch (Exception e)
         {
