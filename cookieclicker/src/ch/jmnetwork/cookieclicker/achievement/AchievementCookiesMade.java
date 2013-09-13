@@ -2,6 +2,8 @@ package ch.jmnetwork.cookieclicker.achievement;
 
 public class AchievementCookiesMade extends Achievement
 {
+    public static Long nextCookies;
+    
     public long cookiesNeeded;
     
     public String[] myDesc = new String[] { "Wake and bake", "Making some dough", "So baked right now", "Fledgling bakery", 
