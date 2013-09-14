@@ -29,7 +29,7 @@ public class CookieClickerMain
         try
         {
             slhandler.loadFromDisk();
-            System.out.println("loading finished;");
+            System.out.println("\nloading finished;");
         }
         catch (CCLoadFromDiskException e)
         {

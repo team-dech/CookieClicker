@@ -8,7 +8,6 @@ import ch.jmnetwork.cookieclicker.helper.Helper;
 
 public class SaveLoadHandler
 {
-    
     private static CookieManager cookiemanager;
     // private static EncryptionHandler encryptionhandler;
     private static PropertiesHandler ph = new PropertiesHandler("CCSave.xml");
