@@ -1,6 +1,7 @@
 package ch.jmnetwork.cookieclicker.util;
 
 import ch.jmnetwork.cookieclicker.CookieManager;
+import ch.jmnetwork.cookieclicker.achievement.AchievementCookiesMade;
 import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
 import ch.jmnetwork.cookieclicker.encryption.EncryptionHandler;
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
@@ -61,6 +62,23 @@ public class SaveLoadHandler
         catch (Exception e)
         {
             throw new CCLoadFromDiskException(e);
+        }
+        finally
+        {
+            long[] cookiesNeeded = new long[] { 1, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 5000000000L, 10000000000L, 50000000000L, 100000000000L, 500000000000L, 1000000000000L, 10000000000000L };
+            
+            long cookiesTest = 0;
+            int index = 0;
+            
+            for (int i = 0; i < cookiesNeeded.length; i++)
+                if (cookiesTest == 0 && cookiemanager.getTotalCookies() >= cookiesNeeded[i])
+                {
+                    cookiesTest = cookiesNeeded[i];
+                    index = i;
+                }
+            
+            AchievementCookiesMade.nextCookies = cookiesTest;
+            AchievementCookiesMade.currentIndex = index;
         }
         
     }

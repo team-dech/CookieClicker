@@ -2,6 +2,8 @@ package ch.jmnetwork.cookieclicker;
 
 import java.io.File;
 
+import ch.jmnetwork.cookieclicker.achievement.AchievementCookiesMade;
+import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
 import ch.jmnetwork.cookieclicker.encryption.EncryptionHandler;
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
@@ -66,6 +68,15 @@ public class CookieClickerMain
             
             cookiemanager.addCookies((int) rem);
             cookiemanager.decimalValue -= rem;
+            
+            if (cookiemanager.getTotalCookies() >= AchievementCookiesMade.nextCookies)
+            {
+                AchievementCookiesMade.nextCookies = AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex + 1];
+                
+                AchievementEventHandler.onEvent("COOKIESMADE", new Object[] { AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex] });
+                
+                AchievementCookiesMade.currentIndex += 1;
+            }
         }
     }
     
