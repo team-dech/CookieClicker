@@ -20,6 +20,11 @@ public class AchievementCookiesMade extends Achievement
         cookiesNeeded = cookies;
     }
     
+    public static void achievementAchieved(long cookies)
+    {
+        
+    }
+    
     public String getName()
     {
         return myDesc[this.achievementID];
