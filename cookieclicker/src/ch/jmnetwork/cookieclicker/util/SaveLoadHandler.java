@@ -6,6 +6,8 @@ import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
 import ch.jmnetwork.cookieclicker.encryption.EncryptionHandler;
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
+import ch.jmnetwork.cookieclicker.strings.JStringIterator;
+import ch.jmnetwork.cookieclicker.strings.JStrings;
 
 public class SaveLoadHandler
 {
@@ -21,18 +23,9 @@ public class SaveLoadHandler
     
     public void saveToDisk()
     {
-        ph.setProperty("CURRENT_COOKIES", cookiemanager.getCurrentCookies() + "");
-        ph.setProperty("TOTAL_COOKIES", cookiemanager.getTotalCookies() + "");
+        ph.setProperty("COOKIES", buildCookiePropertyString());
         ph.setProperty("ACHIEVEMENTS", AchievementEventHandler.save());
-        ph.setProperty("POINTERS_OWNED", Helper.owned[0] + "");
-        ph.setProperty("GRANDMAS_OWNED", Helper.owned[1] + "");
-        ph.setProperty("FARMS_OWNED", Helper.owned[2] + "");
-        ph.setProperty("FACTORYS_OWNED", Helper.owned[3] + "");
-        ph.setProperty("MINES_OWNED", Helper.owned[4] + "");
-        ph.setProperty("SHIPMENTS_OWNED", Helper.owned[5] + "");
-        ph.setProperty("ALCHEMYLABSS_OWNED", Helper.owned[6] + "");
-        ph.setProperty("PORTALS_OWNED", Helper.owned[7] + "");
-        ph.setProperty("TIMEMACHINES_OWNED", Helper.owned[8] + "");
+        ph.setProperty("OBJECTS", buildObjectsPropertyString());
         
         ph.saveProperties();
         // new File("save.cc").delete();
@@ -45,17 +38,22 @@ public class SaveLoadHandler
         try
         {
             // encryptionhandler.readDecryptProperties("save.cc", "CCSave.xml");
-            cookiemanager.setTotalCookies(Long.parseLong(ph.getProperty("TOTAL_COOKIES", "0")));
-            cookiemanager.setCurrentCookies(Long.parseLong(ph.getProperty("CURRENT_COOKIES", "0")));
-            Helper.owned[0] = Integer.parseInt(ph.getProperty("POINTERS_OWNED", "0"));
-            Helper.owned[1] = Integer.parseInt(ph.getProperty("GRANDMAS_OWNED", "0"));
-            Helper.owned[2] = Integer.parseInt(ph.getProperty("FARMS_OWNED", "0"));
-            Helper.owned[3] = Integer.parseInt(ph.getProperty("FACTORYS_OWNED", "0"));
-            Helper.owned[4] = Integer.parseInt(ph.getProperty("MINES_OWNED", "0"));
-            Helper.owned[5] = Integer.parseInt(ph.getProperty("SHIPMENTS_OWNED", "0"));
-            Helper.owned[6] = Integer.parseInt(ph.getProperty("ALCHEMYLABS_OWNED", "0"));
-            Helper.owned[7] = Integer.parseInt(ph.getProperty("PORTALS_OWNED", "0"));
-            Helper.owned[8] = Integer.parseInt(ph.getProperty("TIMEMACHINES_OWNED", "0"));
+            JStringIterator fsi1 = new JStrings(ph.getProperty("COOKIES", "0_0"), "_").getIterator();
+            JStringIterator fsi2 = new JStrings(ph.getProperty("OBJECTS", "0_0_0_0_0_0_0_0_0"), "_").getIterator();
+            
+            cookiemanager.setTotalCookies(Long.parseLong(fsi1.getNextString()));
+            cookiemanager.setCurrentCookies(Long.parseLong(fsi1.getNextString()));
+            
+            Helper.owned[0] = Integer.parseInt(fsi2.getNextString());
+            Helper.owned[1] = Integer.parseInt(fsi2.getNextString());
+            Helper.owned[2] = Integer.parseInt(fsi2.getNextString());
+            Helper.owned[3] = Integer.parseInt(fsi2.getNextString());
+            Helper.owned[4] = Integer.parseInt(fsi2.getNextString());
+            Helper.owned[5] = Integer.parseInt(fsi2.getNextString());
+            Helper.owned[6] = Integer.parseInt(fsi2.getNextString());
+            Helper.owned[7] = Integer.parseInt(fsi2.getNextString());
+            Helper.owned[8] = Integer.parseInt(fsi2.getNextString());
+            
             AchievementEventHandler.load(ph.getProperty("ACHIEVEMENTS", "$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0"));
             // new File("CCSave.xml").delete();
         }
@@ -65,7 +63,8 @@ public class SaveLoadHandler
         }
         finally
         {
-            long[] cookiesNeeded = new long[] { 1, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 5000000000L, 10000000000L, 50000000000L, 100000000000L, 500000000000L, 1000000000000L, 10000000000000L };
+            long[] cookiesNeeded = new long[]
+            { 1, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 5000000000L, 10000000000L, 50000000000L, 100000000000L, 500000000000L, 1000000000000L, 10000000000000L };
             
             long cookiesTest = 0;
             int index = 0;
@@ -82,4 +81,15 @@ public class SaveLoadHandler
         }
         
     }
+    
+    private String buildObjectsPropertyString()
+    {
+        return Helper.owned[0] + "_" + Helper.owned[1] + "_" + Helper.owned[2] + "_" + Helper.owned[3] + "_" + Helper.owned[4] + "_" + Helper.owned[5] + "_" + Helper.owned[6] + "_" + Helper.owned[7] + "_" + Helper.owned[8];
+    }
+    
+    private String buildCookiePropertyString()
+    {
+        return cookiemanager.getTotalCookies() + "_" + cookiemanager.getCurrentCookies();
+    }
+    
 }
