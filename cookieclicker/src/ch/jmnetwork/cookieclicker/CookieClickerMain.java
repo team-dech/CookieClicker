@@ -98,7 +98,6 @@ public class CookieClickerMain
             {
                 ccui.setInfoMessage("No internet connection detected - please connect to the internet for the first time!");
             }
-            
         }
     }
     
