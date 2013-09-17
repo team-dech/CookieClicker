@@ -34,12 +34,12 @@ public class CCUserInterface
     private static SaveLoadHandler slHandler;
     
     private final static String FONT = "Arial";
-    private final static Image cookie = Toolkit.getDefaultToolkit().getImage("cookie.png");
+    public final static Image cookie = Toolkit.getDefaultToolkit().getImage("cookie.png");
     private final static Image cookie_small = Toolkit.getDefaultToolkit().getImage("cookie_small.png");
     private final static ImageIcon cookieImageIcon = new ImageIcon(cookie);
     private final static ImageIcon cookie_smallImageIcon = new ImageIcon(cookie_small);
     
-    private static JFrame jframe;
+    public static JFrame jframe;
     private static JLabel infoLabel;
     private static JButton cookie_button;
     private static JLabel currentCookiesLabel;
