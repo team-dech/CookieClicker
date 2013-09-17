@@ -4,30 +4,21 @@ import ch.jmnetwork.cookieclicker.exceptions.EventCorruptDataException;
 
 public class AchievementEventHandler
 {
-    public static void onEvent(String eventType, Object[] data)
+    public static void onEvent(String eventType, Object[] data) throws EventCorruptDataException
     {
         try
         {
             if (eventType.equals("COOKIESMADE"))
             {
-                long cookies = (long)data[0];
+                long cookies = (long) data[0];
                 
                 AchievementCookiesMade.achievementAchieved(cookies);
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            try
-            {
-                throwCorruptDataException();
-            }
-            catch (EventCorruptDataException e1) {}
+            throw new EventCorruptDataException();
         }
-    }
-    
-    public static void throwCorruptDataException() throws EventCorruptDataException
-    {
-        throw new EventCorruptDataException();
     }
     
     public static String save()
@@ -35,7 +26,7 @@ public class AchievementEventHandler
         String data = "";
         
         for (int i = 0; i < Achievement.achieved.length; i++)
-            data = data + (Achievement.achieved[i]?"$1":"$0");
+            data = data + (Achievement.achieved[i] ? "$1" : "$0");
         
         return data;
     }

@@ -6,6 +6,7 @@ import ch.jmnetwork.cookieclicker.achievement.AchievementCookiesMade;
 import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
 import ch.jmnetwork.cookieclicker.encryption.EncryptionHandler;
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
+import ch.jmnetwork.cookieclicker.exceptions.EventCorruptDataException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.net.NetworkHelper;
 import ch.jmnetwork.cookieclicker.ui.CCUserInterface;
@@ -73,7 +74,15 @@ public class CookieClickerMain
             {
                 AchievementCookiesMade.nextCookies = AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex + 1];
                 
-                AchievementEventHandler.onEvent("COOKIESMADE", new Object[] { AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex] });
+                try
+                {
+                    AchievementEventHandler.onEvent("COOKIESMADE", new Object[]
+                    { AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex] });
+                }
+                catch (EventCorruptDataException e)
+                {
+                    System.out.println("EVENT CORRUPT DATA EXCEPTION CATCHED");
+                }
                 
                 AchievementCookiesMade.currentIndex += 1;
             }
