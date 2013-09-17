@@ -3,3 +3,6 @@
 .metadata/*
 cookieclicker/bin/*
 cookieclicker/CCSave.xml
+
+cookieclicker/.project
+cookieclicker/.classpath
