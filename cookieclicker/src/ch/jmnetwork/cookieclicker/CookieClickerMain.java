@@ -81,7 +81,7 @@ public class CookieClickerMain
                 }
                 catch (EventCorruptDataException e)
                 {
-                    System.out.println("EVENT CORRUPT DATA EXCEPTION CATCHED");
+                    System.out.println("EVENT CORRUPT DATA EXCEPTION CAUGHT");
                 }
                 
                 AchievementCookiesMade.currentIndex += 1;
