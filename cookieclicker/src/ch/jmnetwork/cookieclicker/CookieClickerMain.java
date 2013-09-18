@@ -109,9 +109,4 @@ public class CookieClickerMain
             }
         }
     }
-    
-    public int nanoToMilliseconds(long nanoTime)
-    {
-        return (int) (nanoTime / 1000000);
-    }
 }
