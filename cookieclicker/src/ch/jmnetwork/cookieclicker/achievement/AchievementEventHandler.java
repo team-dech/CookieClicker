@@ -13,10 +13,12 @@ public class AchievementEventHandler
                 long cookies = (long) data[0];
                 
                 AchievementCookiesMade.achievementAchieved(cookies);
+                Achievement.achieved[(int) data[1]] = true;
             }
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             throw new EventCorruptDataException();
         }
     }

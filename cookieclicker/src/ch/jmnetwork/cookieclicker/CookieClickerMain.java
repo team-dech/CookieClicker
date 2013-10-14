@@ -70,22 +70,23 @@ public class CookieClickerMain
             cookiemanager.addCookies((int) rem);
             cookiemanager.decimalValue -= rem;
             
-            if (cookiemanager.getTotalCookies() >= AchievementCookiesMade.nextCookies)
+        }
+        
+        if (cookiemanager.getTotalCookies() >= AchievementCookiesMade.nextCookies)
+        {
+            AchievementCookiesMade.nextCookies = AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex + 1];
+            
+            try
             {
-                AchievementCookiesMade.nextCookies = AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex + 1];
-                
-                try
-                {
-                    AchievementEventHandler.onEvent("COOKIESMADE", new Object[]
-                    { AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex] });
-                }
-                catch (EventCorruptDataException e)
-                {
-                    System.out.println("EVENT CORRUPT DATA EXCEPTION CAUGHT");
-                }
-                
-                AchievementCookiesMade.currentIndex += 1;
+                AchievementEventHandler.onEvent("COOKIESMADE", new Object[]
+                { AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex], AchievementCookiesMade.currentIndex });
             }
+            catch (EventCorruptDataException e)
+            {
+                System.out.println("EVENT CORRUPT DATA EXCEPTION CAUGHT");
+            }
+            
+            AchievementCookiesMade.currentIndex += 1;
         }
     }
     

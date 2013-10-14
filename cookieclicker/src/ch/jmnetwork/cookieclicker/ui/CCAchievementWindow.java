@@ -1,8 +1,11 @@
 package ch.jmnetwork.cookieclicker.ui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.IllegalComponentStateException;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -32,7 +35,10 @@ public class CCAchievementWindow
         achievementDescription.setText(achievementdescription);
         this.ccui = CCUserInterface.jframe;
         init();
+        jframe.setOpacity(0F);
         jframe.setVisible(true);
+        
+        new Thread(new VisibilityThread(jframe)).start();
     }
     
     private void init()
@@ -43,7 +49,16 @@ public class CCAchievementWindow
         
         jframe.setSize(500, 200);
         jframe.setTitle("Achievement received!");
-        jframe.setLocation((int) ccui.getLocationOnScreen().getX() + 250, (int) ccui.getLocationOnScreen().getY() - 210);
+        try
+        {
+            jframe.setLocation((int) ccui.getLocationOnScreen().getX() + 250, (int) ccui.getLocationOnScreen().getY() - 210);
+        }
+        catch (IllegalComponentStateException e)
+        {
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            jframe.setLocation(d.width - 550, d.height - 250);
+        }
+        
         jframe.setUndecorated(true);
         jframe.setLayout(null);
         jframe.setOpacity(0.8F);
@@ -126,5 +141,33 @@ public class CCAchievementWindow
                 jframe.setLocation(currentCoords.x - mouseDownPoint.x, currentCoords.y - mouseDownPoint.y);
             }
         });
+    }
+    
+    class VisibilityThread implements Runnable
+    {
+        JFrame jf;
+        
+        public VisibilityThread(JFrame JFrame)
+        {
+            jf = JFrame;
+        }
+        
+        @Override
+        public void run()
+        {
+            for (float i = 0F; i <= 0.8F; i += 0.05F)
+            {
+                jf.setOpacity(i);
+                try
+                {
+                    Thread.sleep(100);
+                }
+                catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
     }
 }
