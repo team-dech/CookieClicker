@@ -192,6 +192,7 @@ public class CCUserInterface
         pointerBuyButton.setFont(Font.getFont(FONT));
         pointerBuyButton.setBounds(700, 20, 250, 20);
         pointerBuyButton.setEnabled(false);
+        pointerBuyButton.setToolTipText(Helper.helpers[0].productivity+" Cookies / s");
         pointerBuyButton.addActionListener(new ActionListener()
         {
             @Override
@@ -208,6 +209,7 @@ public class CCUserInterface
         grandmaBuyButton.setFont(Font.getFont(FONT));
         grandmaBuyButton.setBounds(700, 42, 250, 20);
         grandmaBuyButton.setEnabled(false);
+        grandmaBuyButton.setToolTipText(Helper.helpers[1].productivity+" Cookies / s");
         grandmaBuyButton.addActionListener(new ActionListener()
         {
             @Override
@@ -224,6 +226,7 @@ public class CCUserInterface
         farmBuyButton.setFont(Font.getFont(FONT));
         farmBuyButton.setBounds(700, 64, 250, 20);
         farmBuyButton.setEnabled(false);
+        farmBuyButton.setToolTipText(Helper.helpers[2].productivity+" Cookies / s");
         farmBuyButton.addActionListener(new ActionListener()
         {
             @Override
@@ -240,6 +243,7 @@ public class CCUserInterface
         factoryBuyButton.setFont(Font.getFont(FONT));
         factoryBuyButton.setBounds(700, 86, 250, 20);
         factoryBuyButton.setEnabled(false);
+        factoryBuyButton.setToolTipText(Helper.helpers[3].productivity+" Cookies / s");
         factoryBuyButton.addActionListener(new ActionListener()
         {
             @Override
@@ -256,6 +260,7 @@ public class CCUserInterface
         mineBuyButton.setFont(Font.getFont(FONT));
         mineBuyButton.setBounds(700, 108, 250, 20);
         mineBuyButton.setEnabled(false);
+        mineBuyButton.setToolTipText(Helper.helpers[4].productivity+" Cookies / s");
         mineBuyButton.addActionListener(new ActionListener()
         {
             @Override
@@ -272,6 +277,7 @@ public class CCUserInterface
         shipmentBuyButton.setFont(Font.getFont(FONT));
         shipmentBuyButton.setBounds(700, 130, 250, 20);
         shipmentBuyButton.setEnabled(false);
+        shipmentBuyButton.setToolTipText(Helper.helpers[5].productivity+" Cookies / s");
         shipmentBuyButton.addActionListener(new ActionListener()
         {
             @Override
@@ -288,6 +294,7 @@ public class CCUserInterface
         alchemyLabBuyButton.setFont(Font.getFont(FONT));
         alchemyLabBuyButton.setBounds(700, 152, 250, 20);
         alchemyLabBuyButton.setEnabled(false);
+        alchemyLabBuyButton.setToolTipText(Helper.helpers[6].productivity+" Cookies / s");
         alchemyLabBuyButton.addActionListener(new ActionListener()
         {
             @Override
@@ -304,6 +311,7 @@ public class CCUserInterface
         portalBuyButton.setFont(Font.getFont(FONT));
         portalBuyButton.setBounds(700, 174, 250, 20);
         portalBuyButton.setEnabled(false);
+        portalBuyButton.setToolTipText(Helper.helpers[7].productivity+" Cookies / s");
         portalBuyButton.addActionListener(new ActionListener()
         {
             @Override
@@ -320,6 +328,7 @@ public class CCUserInterface
         timeMachineBuyButton.setFont(Font.getFont(FONT));
         timeMachineBuyButton.setBounds(700, 196, 250, 20);
         timeMachineBuyButton.setEnabled(false);
+        timeMachineBuyButton.setToolTipText(Helper.helpers[8].productivity+" Cookies / s");
         timeMachineBuyButton.addActionListener(new ActionListener()
         {
             @Override
