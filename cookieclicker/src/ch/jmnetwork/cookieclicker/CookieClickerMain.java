@@ -109,5 +109,9 @@ public class CookieClickerMain
                 ccui.setInfoMessage("No internet connection detected - please connect to the internet for the first time!");
             }
         }
+        if (!new File("AchievementBackground.png").exists())
+        {
+            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/AchievementBackground.png", "AchievementBackground.png");
+        }
     }
 }

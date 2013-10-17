@@ -11,10 +11,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class CCAchievementWindow
 {
@@ -31,6 +36,7 @@ public class CCAchievementWindow
     
     public CCAchievementWindow(String achievementname, String achievementdescription)
     {
+        achievementName.setHorizontalAlignment(SwingConstants.CENTER);
         achievementName.setText(achievementname);
         achievementDescription.setText(achievementdescription);
         this.ccui = CCUserInterface.jframe;
@@ -60,19 +66,30 @@ public class CCAchievementWindow
         }
         
         jframe.setUndecorated(true);
-        jframe.setLayout(null);
+        jframe.getContentPane().setLayout(null);
         jframe.setOpacity(0.8F);
         jframe.setIconImage(CCUserInterface.cookie);
+        try
+        {
+            jframe.setContentPane(new ImagePanel(ImageIO.read(new File("AchievementBackground.png"))));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
         addJFrameMouseListener();
         
-        achievementName.setBounds(20, 20, 480, 50);
+        achievementName.setBounds(20, 5, 480, 50);
         achievementName.setForeground(Color.red);
         achievementName.setFont(new Font("Arial", Font.BOLD, 24));
         achievementName.setText("<html><strong>" + achievementName.getText() + "</strong></html>");
         achievementDescription.setBounds(20, 60, 480, 20);
         
-        exitButton.setText("OK");
-        exitButton.setBounds(440, 170, 50, 20);
+        exitButton.setText("");
+        exitButton.setBounds(420, 160, 70, 30);
+        exitButton.setContentAreaFilled(false);
+        exitButton.setBorder(BorderFactory.createEmptyBorder());
+        exitButton.setFocusPainted(false);
         exitButton.addActionListener(new ActionListener()
         {
             @Override
