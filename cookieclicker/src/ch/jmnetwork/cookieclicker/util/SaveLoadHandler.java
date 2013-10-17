@@ -1,5 +1,6 @@
 package ch.jmnetwork.cookieclicker.util;
 
+import ch.jmnetwork.cookieclicker.CookieClickerMain;
 import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.achievement.AchievementCookiesMade;
 import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
@@ -26,6 +27,7 @@ public class SaveLoadHandler
         ph.setProperty("COOKIES", buildCookiePropertyString());
         ph.setProperty("ACHIEVEMENTS", AchievementEventHandler.save());
         ph.setProperty("OBJECTS", buildObjectsPropertyString());
+        ph.setProperty("TICKS_S", "" + CookieClickerMain.TICKS_PER_SECOND);
         
         ph.saveProperties();
         // new File("save.cc").delete();
@@ -37,7 +39,7 @@ public class SaveLoadHandler
     {
         try
         {
-            // encryptionhandler.readDecryptProperties("save.cc", "CCSave.xml");
+            CookieClickerMain.TICKS_PER_SECOND = Integer.parseInt(ph.getProperty("TICKS_S", "25"));
             JStringIterator fsi1 = new JStrings(ph.getProperty("COOKIES", "0_0"), "_").getIterator();
             JStringIterator fsi2 = new JStrings(ph.getProperty("OBJECTS", "0_0_0_0_0_0_0_0_0"), "_").getIterator();
             

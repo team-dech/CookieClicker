@@ -15,7 +15,7 @@ import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
 public class CookieClickerMain
 {
     public static CookieClickerMain INSTANCE;
-    private final static int TICKS_PER_SECOND = 25;
+    public static int TICKS_PER_SECOND = 25;
     private static long lastTime = 0;
     private static long thisTime = 0;
     private static CCUserInterface ccui;
