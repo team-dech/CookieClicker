@@ -4,7 +4,6 @@ import ch.jmnetwork.cookieclicker.CookieClickerMain;
 import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.achievement.AchievementCookiesMade;
 import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
-import ch.jmnetwork.cookieclicker.encryption.EncryptionHandler;
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.strings.JStringIterator;
@@ -16,10 +15,9 @@ public class SaveLoadHandler
     // private static EncryptionHandler encryptionhandler;
     private static PropertiesHandler ph = new PropertiesHandler("CCSave.xml");
     
-    public SaveLoadHandler(CookieManager cm, EncryptionHandler encryptionHandler)
+    public SaveLoadHandler(CookieManager cm)
     {
         cookiemanager = cm;
-        // encryptionhandler = encryptionHandler;
     }
     
     public void saveToDisk()
@@ -30,9 +28,6 @@ public class SaveLoadHandler
         ph.setProperty("TICKS_S", "" + CookieClickerMain.TICKS_PER_SECOND);
         
         ph.saveProperties();
-        // new File("save.cc").delete();
-        // encryptionhandler.encryptProperties("CCSave.xml", "save.cc");
-        // new File("CCSave.xml").deleteOnExit();
     }
     
     public void loadFromDisk() throws CCLoadFromDiskException
@@ -57,7 +52,6 @@ public class SaveLoadHandler
             Helper.owned[8] = Integer.parseInt(fsi2.getNextString());
             
             AchievementEventHandler.load(ph.getProperty("ACHIEVEMENTS", "$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0"));
-            // new File("CCSave.xml").delete();
         }
         catch (Exception e)
         {

@@ -4,7 +4,6 @@ import java.io.File;
 
 import ch.jmnetwork.cookieclicker.achievement.AchievementCookiesMade;
 import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
-import ch.jmnetwork.cookieclicker.encryption.EncryptionHandler;
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
 import ch.jmnetwork.cookieclicker.exceptions.EventCorruptDataException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
@@ -20,8 +19,7 @@ public class CookieClickerMain
     private static long thisTime = 0;
     private static CCUserInterface ccui;
     private static CookieManager cookiemanager = new CookieManager();
-    private static EncryptionHandler encHandler = new EncryptionHandler();
-    private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager, encHandler);
+    private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
     
     public static void main(String[] args)
     {
@@ -100,18 +98,16 @@ public class CookieClickerMain
         File f = new File("cookie.png");
         if (!f.exists())
         {
-            if (new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie.png", "cookie.png") != null && new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie_small.png", "cookie_small.png") != null)
-            {
-                ccui.setInfoMessage("The cookie image was downloaded, please restart!");
-            }
-            else
-            {
-                ccui.setInfoMessage("No internet connection detected - please connect to the internet for the first time!");
-            }
+            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie.png", "cookie.png");
+            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie_small.png", "cookie_small.png");
         }
         if (!new File("AchievementBackground.png").exists())
         {
             new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/AchievementBackground.png", "AchievementBackground.png");
+        }
+        if (!new File("MainBackground.png").exists())
+        {
+            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/MainBackground.png", "MainBackground.png");
         }
     }
 }

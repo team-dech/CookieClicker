@@ -67,7 +67,7 @@ public class CCAchievementWindow
         
         jframe.setUndecorated(true);
         jframe.getContentPane().setLayout(null);
-        jframe.setOpacity(0.8F);
+        jframe.setOpacity(1.0F);
         jframe.setIconImage(CCUserInterface.cookie);
         try
         {
@@ -172,7 +172,7 @@ public class CCAchievementWindow
         @Override
         public void run()
         {
-            for (float i = 0F; i <= 0.8F; i += 0.05F)
+            for (float i = 0F; i <= 1.0F; i += 0.05F)
             {
                 jf.setOpacity(i);
                 try
@@ -184,6 +184,7 @@ public class CCAchievementWindow
                     e.printStackTrace();
                 }
             }
+            
         }
         
     }
