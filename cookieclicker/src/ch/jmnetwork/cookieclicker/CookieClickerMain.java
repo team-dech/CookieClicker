@@ -20,6 +20,11 @@ public class CookieClickerMain
     private static long thisTime_1 = 0;
     private static long lastTime_2 = 0;
     private static long thisTime_2 = 0;
+    private static long lastTime_3 = 0;
+    private static long thisTime_3 = 0;
+    private static long lastHandmadeCookies = 0;
+    private static long thisHandmadeCookies = 0;
+    public static long handmadePerSec = 0;
     private static CCUserInterface ccui;
     private static CookieManager cookiemanager = new CookieManager();
     private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
@@ -44,9 +49,12 @@ public class CookieClickerMain
         {
             if (lastTime_1 == 0) lastTime_1 = System.nanoTime();
             if (lastTime_2 == 0) lastTime_2 = System.nanoTime();
+            if (lastTime_3 == 0) lastTime_3 = System.nanoTime();
+            if (lastHandmadeCookies == 0) lastHandmadeCookies = cookiemanager.getHandmadeCookies();
             
             thisTime_1 = System.nanoTime();
             thisTime_2 = System.nanoTime();
+            thisTime_3 = System.nanoTime();
             
             // only run this TICKS_PER_SECOND times per second
             if ((thisTime_1 - lastTime_1) / 1000000 >= 1000 / TICKS_PER_SECOND)
@@ -58,6 +66,18 @@ public class CookieClickerMain
                 INSTANCE.handleTick();
                 ccui.updateUI();
                 lastTime_1 = System.nanoTime();
+            }
+            
+            if ((thisTime_3 - lastTime_3) / 1000000 >= 2 * 1000)
+            {
+                thisHandmadeCookies = cookiemanager.getHandmadeCookies();
+                
+                handmadePerSec = (thisHandmadeCookies - lastHandmadeCookies) / 2;
+                
+                System.out.println("\n[CC] Handmade / s: " + handmadePerSec + "\n");
+                
+                lastHandmadeCookies = cookiemanager.getHandmadeCookies();
+                lastTime_3 = System.nanoTime();
             }
             
             if ((thisTime_2 - lastTime_2) / 1000000 >= SECOND_TASK_EACH_SECONDS * 1000)
