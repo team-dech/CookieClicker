@@ -15,8 +15,11 @@ public class CookieClickerMain
 {
     public static CookieClickerMain INSTANCE;
     public static int TICKS_PER_SECOND = 25;
-    private static long lastTime = 0;
-    private static long thisTime = 0;
+    public static int SECOND_TASK_EACH_SECONDS = 10;
+    private static long lastTime_1 = 0;
+    private static long thisTime_1 = 0;
+    private static long lastTime_2 = 0;
+    private static long thisTime_2 = 0;
     private static CCUserInterface ccui;
     private static CookieManager cookiemanager = new CookieManager();
     private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
@@ -39,12 +42,14 @@ public class CookieClickerMain
         
         while (true)
         {
-            if (lastTime == 0) lastTime = System.nanoTime();
+            if (lastTime_1 == 0) lastTime_1 = System.nanoTime();
+            if (lastTime_2 == 0) lastTime_2 = System.nanoTime();
             
-            thisTime = System.nanoTime();
+            thisTime_1 = System.nanoTime();
+            thisTime_2 = System.nanoTime();
             
             // only run this TICKS_PER_SECOND times per second
-            if ((thisTime - lastTime) / 1000000 >= 1000 / TICKS_PER_SECOND)
+            if ((thisTime_1 - lastTime_1) / 1000000 >= 1000 / TICKS_PER_SECOND)
             {
                 // ======================================//
                 // STUFF TO RUN EACH TICK
@@ -52,7 +57,19 @@ public class CookieClickerMain
                 
                 INSTANCE.handleTick();
                 ccui.updateUI();
-                lastTime = System.nanoTime();
+                lastTime_1 = System.nanoTime();
+            }
+            
+            if ((thisTime_2 - lastTime_2) / 1000000 >= SECOND_TASK_EACH_SECONDS * 1000)
+            {
+                // ===================================================//
+                // STUFF TO RUN EVERY SECOND_TASK_EACH_SECONDS SECONDS
+                // ===================================================//
+                
+                // Save game state
+                new Thread(INSTANCE.new SaveThread()).start();
+                
+                lastTime_2 = System.nanoTime();
             }
         }
     }
@@ -108,6 +125,27 @@ public class CookieClickerMain
         if (!new File("MainBackground.png").exists())
         {
             new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/MainBackground.png", "MainBackground.png");
+        }
+    }
+    
+    public class SaveThread implements Runnable
+    {
+        
+        @Override
+        public void run()
+        {
+            ccui.setInfoMessage("Saving game...");
+            System.out.println("\n[CC] Saving...");
+            slhandler.saveToDisk();
+            System.out.println("[CC] Saving complete.\n");
+            try
+            {
+                Thread.sleep(500L);
+            }
+            catch (InterruptedException e)
+            {
+            }
+            ccui.setInfoMessage("");
         }
     }
 }

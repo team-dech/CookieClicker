@@ -25,6 +25,7 @@ import javax.swing.UIManager;
 import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.helper.HelperClicker;
+import ch.jmnetwork.cookieclicker.lib.Reference;
 import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
 
 public class CCUserInterface
@@ -41,6 +42,7 @@ public class CCUserInterface
     private final static Image cookie_small = Toolkit.getDefaultToolkit().getImage("cookie_small.png");
     private final static ImageIcon cookieImageIcon = new ImageIcon(cookie);
     private final static ImageIcon cookie_smallImageIcon = new ImageIcon(cookie_small);
+    private static String currentInfoMessage = "";
     
     public static JFrame jframe;
     private static JLabel infoLabel;
@@ -117,7 +119,7 @@ public class CCUserInterface
         // COMPONENT SETTINGS
         // ======================================//
         
-        jframe.setTitle("Java Cookie Clicker by TH3ON1YN00B and domi1819");
+        jframe.setTitle("Java Cookie Clicker by TH3ON1YN00B and domi1819 - Version " + Reference.VERSION);
         jframe.setSize(1000, (265 + 80));
         jframe.getContentPane().setLayout(null);
         jframe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -498,6 +500,12 @@ public class CCUserInterface
     public void setInfoMessage(String message)
     {
         infoLabel.setText("<html><strong>" + message + "</strong></html>");
+        currentInfoMessage = message;
+    }
+    
+    public String getInfoMessage()
+    {
+        return currentInfoMessage;
     }
     
     private float onlyOneAfterComma(float input)
