@@ -49,6 +49,7 @@ public class CCUserInterface
     private static JButton cookie_button;
     private static JLabel currentCookiesLabel;
     private static JLabel cookieRateLabel;
+    private static JLabel cookiesHandmade;
     private static JButton pointerBuyButton;
     private static JButton grandmaBuyButton;
     private static JButton farmBuyButton;
@@ -105,6 +106,7 @@ public class CCUserInterface
         cookie_button = new JButton();
         currentCookiesLabel = new JLabel();
         cookieRateLabel = new JLabel();
+        cookiesHandmade = new JLabel();
         pointerBuyButton = new JButton();
         grandmaBuyButton = new JButton();
         farmBuyButton = new JButton();
@@ -162,7 +164,7 @@ public class CCUserInterface
             @Override
             public void actionPerformed(ActionEvent arg0)
             {
-                cookiemanager.addCookies(HelperClicker.cookiesPerClick());
+                cookiemanager.addHandmadeCookies(HelperClicker.cookiesPerClick());
                 updateUI();
             }
         });
@@ -203,6 +205,10 @@ public class CCUserInterface
         cookieRateLabel.setText("");
         cookieRateLabel.setFont(Font.getFont(FONT));
         cookieRateLabel.setBounds(300, 30, 300, 50);
+        
+        cookiesHandmade.setText("HANDMADE_HERE");
+        cookiesHandmade.setFont(Font.getFont(FONT));
+        cookiesHandmade.setBounds(300, 40, 300, 50);
         
         pointerBuyButton.setText("POINTERS_HERE");
         pointerBuyButton.setFont(Font.getFont(FONT));
@@ -364,6 +370,7 @@ public class CCUserInterface
         jframe.getContentPane().add(cookie_button);
         jframe.getContentPane().add(currentCookiesLabel);
         jframe.getContentPane().add(cookieRateLabel);
+        jframe.getContentPane().add(cookiesHandmade);
         jframe.getContentPane().add(pointerBuyButton);
         jframe.getContentPane().add(grandmaBuyButton);
         jframe.getContentPane().add(farmBuyButton);
@@ -382,7 +389,7 @@ public class CCUserInterface
         // UPDATE THE UI CONTENT
         // ======================================//
         
-        if (currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null && mineBuyButton != null && shipmentBuyButton != null && alchemyLabBuyButton != null && portalBuyButton != null && timeMachineBuyButton != null)
+        if (currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null && mineBuyButton != null && shipmentBuyButton != null && alchemyLabBuyButton != null && portalBuyButton != null && timeMachineBuyButton != null && cookiesHandmade != null)
         {
             // ======================================//
             // SET BUTTON / LABEL TEXTS
@@ -390,6 +397,7 @@ public class CCUserInterface
             
             currentCookiesLabel.setText("Current Cookies: " + cookiemanager.getCurrentCookies());
             cookieRateLabel.setText("Current Cookie Rate: " + onlyOneAfterComma(Helper.getCookieRate()));
+            cookiesHandmade.setText("Handmade cookies: " + cookiemanager.getHandmadeCookies());
             pointerBuyButton.setText(Helper.owned[0] + " Pointers | Buy for " + Helper.getPriceForHelper(0));
             grandmaBuyButton.setText(Helper.owned[1] + " Grandmas | Buy for " + Helper.getPriceForHelper(1));
             farmBuyButton.setText(Helper.owned[2] + " Farms | Buy for " + Helper.getPriceForHelper(2));

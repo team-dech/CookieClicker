@@ -2,8 +2,18 @@ package ch.jmnetwork.cookieclicker;
 
 public class CookieManager
 {
-    private long cookiesTotal = 0, cookiesCurrent = 0;
+    private long cookiesTotal = 0, cookiesCurrent = 0, cookiesHandmade = 0;
     public float decimalValue;
+    
+    public void addHandmadeCookies(int cookiesAmmount)
+    {
+        cookiesHandmade += cookiesAmmount;
+    }
+    
+    public long getHandmadeCookies()
+    {
+        return cookiesHandmade;
+    }
     
     public void addCookies(int cookiesAmount)
     {
@@ -55,5 +65,15 @@ public class CookieManager
     public void setCurrentCookies(long currentCookies)
     {
         this.cookiesCurrent = currentCookies;
+    }
+    
+    /**
+     * PLEASE ONLY USE FOR SAVE / LOAD PROCESS
+     * 
+     * @param cookiesTotal
+     */
+    public void setHandmadeCookies(long cookiesTotal)
+    {
+        cookiesHandmade = cookiesTotal;
     }
 }

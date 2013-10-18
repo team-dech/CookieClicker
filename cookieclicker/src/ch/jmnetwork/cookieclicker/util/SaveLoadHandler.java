@@ -35,11 +35,12 @@ public class SaveLoadHandler
         try
         {
             CookieClickerMain.TICKS_PER_SECOND = Integer.parseInt(ph.getProperty("TICKS_S", "25"));
-            JStringIterator fsi1 = new JStrings(ph.getProperty("COOKIES", "0_0"), "_").getIterator();
+            JStringIterator fsi1 = new JStrings(ph.getProperty("COOKIES", "0_0_0"), "_").getIterator();
             JStringIterator fsi2 = new JStrings(ph.getProperty("OBJECTS", "0_0_0_0_0_0_0_0_0"), "_").getIterator();
             
             cookiemanager.setTotalCookies(Long.parseLong(fsi1.getNextString()));
             cookiemanager.setCurrentCookies(Long.parseLong(fsi1.getNextString()));
+            cookiemanager.setHandmadeCookies(Long.parseLong(fsi1.getNextString()));
             
             Helper.owned[0] = Integer.parseInt(fsi2.getNextString());
             Helper.owned[1] = Integer.parseInt(fsi2.getNextString());
@@ -85,7 +86,7 @@ public class SaveLoadHandler
     
     private String buildCookiePropertyString()
     {
-        return cookiemanager.getTotalCookies() + "_" + cookiemanager.getCurrentCookies();
+        return cookiemanager.getTotalCookies() + "_" + cookiemanager.getCurrentCookies() + "_" + cookiemanager.getHandmadeCookies();
     }
     
 }
