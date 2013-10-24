@@ -128,9 +128,9 @@ public class CookieClickerMain
         {
             new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/AchievementBackground.png", "AchievementBackground.png");
         }
-        if (!new File("MainBackground.png").exists())
+        if (!new File("BackgroundNew.png").exists())
         {
-            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/MainBackground.png", "MainBackground.png");
+            new NetworkHelper().getFileFromURL("http://dfiles.jmnetwork.ch/BackgroundNew.png", "BackgroundNew.png");
         }
     }
 }

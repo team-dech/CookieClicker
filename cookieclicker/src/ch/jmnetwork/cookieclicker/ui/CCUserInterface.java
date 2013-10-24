@@ -63,6 +63,7 @@ public class CCUserInterface
     private static JButton alchemyLabBuyButton;
     private static JButton portalBuyButton;
     private static JButton timeMachineBuyButton;
+    private static JButton condenserBuyButton;
     private static JLabel totalCookies;
     
     public CCUserInterface(CookieManager cookieManager, SaveLoadHandler slhandler)
@@ -122,6 +123,7 @@ public class CCUserInterface
         alchemyLabBuyButton = new JButton();
         portalBuyButton = new JButton();
         timeMachineBuyButton = new JButton();
+        condenserBuyButton = new JButton();
         totalCookies = new JLabel();
         
         // ======================================//
@@ -139,7 +141,7 @@ public class CCUserInterface
         {
             try
             {
-                jframe.setContentPane(new ImagePanel(ImageIO.read(new File("MainBackground.png"))));
+                jframe.setContentPane(new ImagePanel(ImageIO.read(new File("BackgroundNew.png"))));
             }
             catch (IOException e1)
             {
@@ -374,6 +376,23 @@ public class CCUserInterface
             }
         });
         
+        condenserBuyButton.setText("CONDENSER");
+        condenserBuyButton.setFont(Font.getFont(FONT));
+        condenserBuyButton.setBounds(700, 218, 250, 20);
+        condenserBuyButton.setEnabled(false);
+        condenserBuyButton.setToolTipText(Helper.helpers[8].productivity + " Cookies / s");
+        condenserBuyButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent event)
+            {
+                if (cookiemanager.buyPrice(Helper.getPriceForHelper(9)))
+                {
+                    Helper.helpers[9].onBought();
+                }
+            }
+        });
+        
         totalCookies.setText("TOTAL_HERE");
         totalCookies.setFont(Font.getFont(FONT));
         totalCookies.setBounds(300, 70, 300, 40);
@@ -397,6 +416,7 @@ public class CCUserInterface
         jframe.getContentPane().add(alchemyLabBuyButton);
         jframe.getContentPane().add(portalBuyButton);
         jframe.getContentPane().add(timeMachineBuyButton);
+        jframe.getContentPane().add(condenserBuyButton);
         jframe.getContentPane().add(totalCookies);
     }
     
@@ -406,7 +426,7 @@ public class CCUserInterface
         // UPDATE THE UI CONTENT
         // ======================================//
         
-        if (run == true || (totalCookies != null && cookiesHandmadePerSec != null && currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null && mineBuyButton != null && shipmentBuyButton != null && alchemyLabBuyButton != null && portalBuyButton != null && timeMachineBuyButton != null && cookiesHandmade != null))
+        if (run == true || (totalCookies != null && cookiesHandmadePerSec != null && currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null && mineBuyButton != null && shipmentBuyButton != null && alchemyLabBuyButton != null && portalBuyButton != null && timeMachineBuyButton != null && condenserBuyButton != null && cookiesHandmade != null))
         {
             run = true;
             
@@ -427,6 +447,7 @@ public class CCUserInterface
             alchemyLabBuyButton.setText(Helper.owned[6] + " Alchemy Labs | Buy for " + Helper.getPriceForHelper(6));
             portalBuyButton.setText(Helper.owned[7] + " Portals | Buy for " + Helper.getPriceForHelper(7));
             timeMachineBuyButton.setText(Helper.owned[8] + " Time Machines | Buy for " + Helper.getPriceForHelper(8));
+            condenserBuyButton.setText(Helper.owned[9] + " Condensers | Buy for " + Helper.getPriceForHelper(9));
             totalCookies.setText("All-Time cookies: " + cookiemanager.getTotalCookies());
             
             // ======================================//
@@ -522,6 +543,8 @@ public class CCUserInterface
             {
                 timeMachineBuyButton.setEnabled(false);
             }
+            
+            condenserBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(9));
         }
         
     }
@@ -539,8 +562,6 @@ public class CCUserInterface
     
     private float onlyOneAfterComma(float input)
     {
-        float x = (float) (Math.floor(input * 10F) / 10F);
-        
-        return x;
+        return (float) (Math.floor(input * 10F) / 10F);
     }
 }

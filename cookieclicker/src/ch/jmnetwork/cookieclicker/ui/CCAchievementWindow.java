@@ -54,7 +54,7 @@ public class CCAchievementWindow
         // ======================================//
         
         jframe.setSize(500, 200);
-        jframe.setTitle("Achievement received!");
+        jframe.setTitle("Achievement aquired!");
         try
         {
             jframe.setLocation((int) ccui.getLocationOnScreen().getX() + 250, (int) ccui.getLocationOnScreen().getY() - 210);
