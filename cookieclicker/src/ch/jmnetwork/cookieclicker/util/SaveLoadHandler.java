@@ -36,7 +36,7 @@ public class SaveLoadHandler
         {
             CookieClickerMain.TICKS_PER_SECOND = Integer.parseInt(ph.getProperty("TICKS_S", "25"));
             JStringIterator fsi1 = new JStrings(ph.getProperty("COOKIES", "0_0_0"), "_").getIterator();
-            JStringIterator fsi2 = new JStrings(ph.getProperty("OBJECTS", "0_0_0_0_0_0_0_0_0"), "_").getIterator();
+            JStringIterator fsi2 = new JStrings(ph.getProperty("OBJECTS", "0_0_0_0_0_0_0_0_0_0"), "_").getIterator();
             
             cookiemanager.setTotalCookies(Long.parseLong(fsi1.getNextString()));
             cookiemanager.setCurrentCookies(Long.parseLong(fsi1.getNextString()));
@@ -58,6 +58,8 @@ public class SaveLoadHandler
             Helper.owned[6] = Integer.parseInt(fsi2.getNextString());
             Helper.owned[7] = Integer.parseInt(fsi2.getNextString());
             Helper.owned[8] = Integer.parseInt(fsi2.getNextString());
+            int next = Integer.parseInt(fsi2.getNextString());
+            Helper.owned[9] = next == Helper.owned[0] ? 0 : next;
             
             AchievementEventHandler.load(ph.getProperty("ACHIEVEMENTS", "0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0"));
             
@@ -72,7 +74,7 @@ public class SaveLoadHandler
     
     private String buildObjectsPropertyString()
     {
-        return Helper.owned[0] + "_" + Helper.owned[1] + "_" + Helper.owned[2] + "_" + Helper.owned[3] + "_" + Helper.owned[4] + "_" + Helper.owned[5] + "_" + Helper.owned[6] + "_" + Helper.owned[7] + "_" + Helper.owned[8];
+        return Helper.owned[0] + "_" + Helper.owned[1] + "_" + Helper.owned[2] + "_" + Helper.owned[3] + "_" + Helper.owned[4] + "_" + Helper.owned[5] + "_" + Helper.owned[6] + "_" + Helper.owned[7] + "_" + Helper.owned[8] + "_" + Helper.owned[9];
     }
     
     private String buildCookiePropertyString()

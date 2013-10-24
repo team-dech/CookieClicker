@@ -8,7 +8,7 @@ public class Helper
 {
     public static Helper[] helpers = new Helper[10];
     public static int[] owned = new int[]
-    { 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0};
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     
     public float productivity;
     public long price, pBase;
@@ -38,7 +38,7 @@ public class Helper
     {
         float returnValue = 0;
         
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < helpers.length; i++)
             returnValue += (helpers[i].productivity * owned[i]);
         
         return returnValue;
