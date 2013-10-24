@@ -5,9 +5,10 @@ public class CookieManager
     private long cookiesTotal = 0, cookiesCurrent = 0, cookiesHandmade = 0;
     public float decimalValue;
     
-    public void addHandmadeCookies(int cookiesAmmount)
+    public void addHandmadeCookies(int cookiesAmount)
     {
-        cookiesHandmade += cookiesAmmount;
+        cookiesHandmade += cookiesAmount;
+        addCookies(cookiesAmount);
     }
     
     public long getHandmadeCookies()
