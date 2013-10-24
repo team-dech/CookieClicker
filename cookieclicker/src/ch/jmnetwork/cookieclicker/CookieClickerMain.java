@@ -8,6 +8,7 @@ import ch.jmnetwork.cookieclicker.net.NetworkHelper;
 import ch.jmnetwork.cookieclicker.threading.AchievementThread;
 import ch.jmnetwork.cookieclicker.threading.SaveThread;
 import ch.jmnetwork.cookieclicker.ui.CCUserInterface;
+import ch.jmnetwork.cookieclicker.util.CryptedSLHandler;
 import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
 
 public class CookieClickerMain
@@ -26,6 +27,7 @@ public class CookieClickerMain
     public static long handmadePerSec = 0;
     private static CCUserInterface ccui;
     private static CookieManager cookiemanager = new CookieManager();
+    public static CryptedSLHandler cslhandler = new CryptedSLHandler(cookiemanager);
     private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
     
     public static void main(String[] args)
