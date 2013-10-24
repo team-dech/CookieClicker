@@ -40,8 +40,15 @@ public class SaveLoadHandler
             
             cookiemanager.setTotalCookies(Long.parseLong(fsi1.getNextString()));
             cookiemanager.setCurrentCookies(Long.parseLong(fsi1.getNextString()));
-            cookiemanager.setHandmadeCookies(Long.parseLong(fsi1.getNextString()));
-            
+            long handmade = Long.parseLong(fsi1.getNextString());
+            if (handmade == cookiemanager.getTotalCookies())
+            {
+                cookiemanager.setHandmadeCookies(0);
+            }
+            else
+            {
+                cookiemanager.setHandmadeCookies(handmade);
+            }
             Helper.owned[0] = Integer.parseInt(fsi2.getNextString());
             Helper.owned[1] = Integer.parseInt(fsi2.getNextString());
             Helper.owned[2] = Integer.parseInt(fsi2.getNextString());
@@ -52,31 +59,15 @@ public class SaveLoadHandler
             Helper.owned[7] = Integer.parseInt(fsi2.getNextString());
             Helper.owned[8] = Integer.parseInt(fsi2.getNextString());
             
-            AchievementEventHandler.load(ph.getProperty("ACHIEVEMENTS", "$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0$0"));
+            AchievementEventHandler.load(ph.getProperty("ACHIEVEMENTS", "0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0"));
+            
+            System.out.println(AchievementCookiesMade.nextCookies);
+            System.out.println("Loading finished!");
         }
         catch (Exception e)
         {
             throw new CCLoadFromDiskException(e);
         }
-        finally
-        {
-            long[] cookiesNeeded = new long[]
-            { 1, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 5000000000L, 10000000000L, 50000000000L, 100000000000L, 500000000000L, 1000000000000L, 10000000000000L };
-            
-            long cookiesTest = 0;
-            int index = 0;
-            
-            for (int i = 0; i < cookiesNeeded.length; i++)
-                if (cookiesTest == 0 && cookiemanager.getTotalCookies() >= cookiesNeeded[i])
-                {
-                    cookiesTest = cookiesNeeded[i];
-                    index = i;
-                }
-            
-            AchievementCookiesMade.nextCookies = cookiesTest;
-            AchievementCookiesMade.currentIndex = index;
-        }
-        
     }
     
     private String buildObjectsPropertyString()

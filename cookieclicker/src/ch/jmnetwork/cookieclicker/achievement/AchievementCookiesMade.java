@@ -33,6 +33,6 @@ public class AchievementCookiesMade extends Achievement
     
     public String getDesc()
     {
-        return "Bake " + cookiesNeeded + " cookies.";
+        return "Bake " + needed[currentIndex] + " cookies.";
     }
 }

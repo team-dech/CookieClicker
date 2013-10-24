@@ -1,6 +1,8 @@
 package ch.jmnetwork.cookieclicker.achievement;
 
 import ch.jmnetwork.cookieclicker.exceptions.EventCorruptDataException;
+import ch.jmnetwork.cookieclicker.strings.JStringIterator;
+import ch.jmnetwork.cookieclicker.strings.JStrings;
 
 public class AchievementEventHandler
 {
@@ -28,16 +30,39 @@ public class AchievementEventHandler
         String data = "";
         
         for (int i = 0; i < Achievement.achieved.length; i++)
-            data = data + (Achievement.achieved[i] ? "$1" : "$0");
+        {
+            if (i > 0)
+            {
+                data = data + (Achievement.achieved[i] ? "_1" : "_0");
+            }
+            else
+            {
+                data = data + (Achievement.achieved[i] ? "1" : "0");
+            }
+            
+        }
         
         return data;
     }
     
     public static void load(String data)
     {
-        String[] split = data.split("$");
+        JStringIterator achStrIterator = new JStrings(data, "_").getIterator();
         
-        for (int i = 0; i < split.length; i++)
-            Achievement.achieved[i] = split[i].equals(1);
+        for (int i = 0; i < achStrIterator.getNumberOfObjects(); i++)
+        {
+            int current = Integer.parseInt(achStrIterator.getNextString());
+            
+            try
+            {
+                Achievement.achieved[i] = current == 1; // Have we got that achievement allready?
+                AchievementCookiesMade.currentIndex = current != 0 ? i + 1 : AchievementCookiesMade.currentIndex; // Where are we at the moment?
+            }
+            catch (Exception e)
+            {
+                
+            }
+        }
+        AchievementCookiesMade.nextCookies = AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex + 1];
     }
 }

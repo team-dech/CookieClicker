@@ -2,12 +2,11 @@ package ch.jmnetwork.cookieclicker;
 
 import java.io.File;
 
-import ch.jmnetwork.cookieclicker.achievement.AchievementCookiesMade;
-import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
 import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
-import ch.jmnetwork.cookieclicker.exceptions.EventCorruptDataException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.net.NetworkHelper;
+import ch.jmnetwork.cookieclicker.threading.AchievementThread;
+import ch.jmnetwork.cookieclicker.threading.SaveThread;
 import ch.jmnetwork.cookieclicker.ui.CCUserInterface;
 import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
 
@@ -38,13 +37,13 @@ public class CookieClickerMain
         try
         {
             slhandler.loadFromDisk();
-            System.out.println("\nloading finished;");
         }
         catch (CCLoadFromDiskException e)
         {
             e.printStackTrace();
         }
         
+        System.out.println("Starting game...");
         while (true)
         {
             if (lastTime_1 == 0) lastTime_1 = System.nanoTime();
@@ -70,11 +69,10 @@ public class CookieClickerMain
             
             if ((thisTime_3 - lastTime_3) / 1000000 >= 2 * 1000)
             {
+                INSTANCE.handleAchievements();
                 thisHandmadeCookies = cookiemanager.getHandmadeCookies();
                 
                 handmadePerSec = (thisHandmadeCookies - lastHandmadeCookies) / 2;
-                
-                System.out.println("\n[CC] Handmade / s: " + handmadePerSec + "\n");
                 
                 lastHandmadeCookies = cookiemanager.getHandmadeCookies();
                 lastTime_3 = System.nanoTime();
@@ -87,7 +85,7 @@ public class CookieClickerMain
                 // ===================================================//
                 
                 // Save game state
-                new Thread(INSTANCE.new SaveThread()).start();
+                new Thread(new SaveThread(ccui, slhandler)).start();
                 
                 lastTime_2 = System.nanoTime();
             }
@@ -106,23 +104,11 @@ public class CookieClickerMain
             cookiemanager.decimalValue -= rem;
             
         }
-        
-        if (cookiemanager.getTotalCookies() >= AchievementCookiesMade.nextCookies)
-        {
-            AchievementCookiesMade.nextCookies = AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex + 1];
-            
-            try
-            {
-                AchievementEventHandler.onEvent("COOKIESMADE", new Object[]
-                { AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex], AchievementCookiesMade.currentIndex });
-            }
-            catch (EventCorruptDataException e)
-            {
-                System.out.println("EVENT CORRUPT DATA EXCEPTION CAUGHT");
-            }
-            
-            AchievementCookiesMade.currentIndex += 1;
-        }
+    }
+    
+    private void handleAchievements()
+    {
+        new Thread(new AchievementThread(cookiemanager)).start();
     }
     
     public CookieClickerMain()
@@ -145,27 +131,6 @@ public class CookieClickerMain
         if (!new File("MainBackground.png").exists())
         {
             new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/MainBackground.png", "MainBackground.png");
-        }
-    }
-    
-    public class SaveThread implements Runnable
-    {
-        
-        @Override
-        public void run()
-        {
-            ccui.setInfoMessage("Saving game...");
-            System.out.println("\n[CC] Saving...");
-            slhandler.saveToDisk();
-            System.out.println("[CC] Saving complete.\n");
-            try
-            {
-                Thread.sleep(500L);
-            }
-            catch (InterruptedException e)
-            {
-            }
-            ccui.setInfoMessage("");
         }
     }
 }
