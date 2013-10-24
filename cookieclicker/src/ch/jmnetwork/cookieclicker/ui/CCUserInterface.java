@@ -177,6 +177,8 @@ public class CCUserInterface
             {
                 cookiemanager.addHandmadeCookies(HelperClicker.cookiesPerClick());
                 updateUI();
+                
+                CookieClickerMain.cslhandler.save();
             }
         });
         cookie_button.addMouseListener(new MouseListener()
