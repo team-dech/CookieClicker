@@ -6,9 +6,9 @@ import ch.jmnetwork.cookieclicker.ui.CCAchievementWindow;
 @SuppressWarnings("unused")
 public class Helper
 {
-    public static Helper[] helpers = new Helper[9];
+    public static Helper[] helpers = new Helper[10];
     public static int[] owned = new int[]
-    { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0};
     
     public float productivity;
     public long price, pBase;
@@ -55,6 +55,7 @@ public class Helper
         helpers[6] = new HelperAlchemyLab(400F, 200000L, 6);
         helpers[7] = new HelperPortal(6666F, 1666666L, 7);
         helpers[8] = new HelperTimeMachine(98765F, 123456789L, 8);
+        helpers[9] = new HelperCondenser(999999F, 3999999999L, 9);
     }
     
     public static long getPriceForHelper(int helperID)
