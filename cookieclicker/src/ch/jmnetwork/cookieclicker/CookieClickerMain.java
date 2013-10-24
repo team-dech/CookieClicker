@@ -2,7 +2,6 @@ package ch.jmnetwork.cookieclicker;
 
 import java.io.File;
 
-import ch.jmnetwork.cookieclicker.exceptions.CCLoadFromDiskException;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.net.NetworkHelper;
 import ch.jmnetwork.cookieclicker.threading.AchievementThread;
@@ -27,23 +26,17 @@ public class CookieClickerMain
     public static long handmadePerSec = 0;
     private static CCUserInterface ccui;
     private static CookieManager cookiemanager = new CookieManager();
-    public static CryptedSLHandler cslhandler = new CryptedSLHandler(cookiemanager);
+    public static CryptedSLHandler cslhandler;
     private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
     
     public static void main(String[] args)
     {
-        ccui = new CCUserInterface(cookiemanager, slhandler);
+        cslhandler = new CryptedSLHandler(cookiemanager);
+        ccui = new CCUserInterface(cookiemanager, slhandler, cslhandler);
         downloadIcon();
         INSTANCE = new CookieClickerMain();
         
-        try
-        {
-            slhandler.loadFromDisk();
-        }
-        catch (CCLoadFromDiskException e)
-        {
-            e.printStackTrace();
-        }
+        cslhandler.load();
         
         System.out.println("Starting game...");
         while (true)
@@ -87,7 +80,7 @@ public class CookieClickerMain
                 // ===================================================//
                 
                 // Save game state
-                new Thread(new SaveThread(ccui, slhandler)).start();
+                new Thread(new SaveThread(ccui, cslhandler)).start();
                 
                 lastTime_2 = System.nanoTime();
             }

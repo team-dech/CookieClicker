@@ -27,7 +27,11 @@ import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.helper.HelperClicker;
 import ch.jmnetwork.cookieclicker.lib.Reference;
+<<<<<<< HEAD
 import ch.jmnetwork.cookieclicker.util.NumberHelper;
+=======
+import ch.jmnetwork.cookieclicker.util.CryptedSLHandler;
+>>>>>>> Crypted I/O, part 2 & a few other tweaks
 import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
 
 public class CCUserInterface
@@ -40,7 +44,7 @@ public class CCUserInterface
     private NumberHelper nh = new NumberHelper();
     
     private static CookieManager cookiemanager;
-    private static SaveLoadHandler slHandler;
+    private CryptedSLHandler cslhandler;
     
     private final static String FONT = "Arial";
     public final static Image cookie = Toolkit.getDefaultToolkit().getImage("cookie.png");
@@ -68,10 +72,10 @@ public class CCUserInterface
     private static JButton condenserBuyButton;
     private static JLabel totalCookies;
     
-    public CCUserInterface(CookieManager cookieManager, SaveLoadHandler slhandler)
+    public CCUserInterface(CookieManager cookieManager, SaveLoadHandler slhandler, CryptedSLHandler cslhandler)
     {
         cookiemanager = cookieManager;
-        slHandler = slhandler;
+        this.cslhandler = cslhandler;
         
         EventQueue.invokeLater(new Runnable()
         {
@@ -155,7 +159,7 @@ public class CCUserInterface
             @Override
             public void windowClosing(WindowEvent e)
             {
-                slHandler.saveToDisk();
+                cslhandler.save();
                 System.exit(0);
             }
         });
@@ -178,7 +182,7 @@ public class CCUserInterface
                 cookiemanager.addHandmadeCookies(HelperClicker.cookiesPerClick());
                 updateUI();
                 
-                CookieClickerMain.cslhandler.save();
+                cslhandler.save();
             }
         });
         cookie_button.addMouseListener(new MouseListener()
@@ -187,13 +191,13 @@ public class CCUserInterface
             @Override
             public void mouseReleased(MouseEvent arg0)
             {
-                cookie_button.setIcon(cookieImageIcon);
+                if (arg0.getButton() == MouseEvent.BUTTON1) cookie_button.setIcon(cookieImageIcon);
             }
             
             @Override
             public void mousePressed(MouseEvent arg0)
             {
-                cookie_button.setIcon(cookie_smallImageIcon);
+                if (arg0.getButton() == MouseEvent.BUTTON1) cookie_button.setIcon(cookie_smallImageIcon);
             }
             
             @Override

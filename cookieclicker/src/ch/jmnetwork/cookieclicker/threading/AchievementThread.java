@@ -5,6 +5,7 @@ import ch.jmnetwork.cookieclicker.achievement.AchievementCookiesMade;
 import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
 import ch.jmnetwork.cookieclicker.exceptions.EventCorruptDataException;
 
+@SuppressWarnings("unused")
 public class AchievementThread implements Runnable
 {
     CookieManager cookiemanager;
@@ -17,9 +18,9 @@ public class AchievementThread implements Runnable
     @Override
     public void run()
     {
-        System.err.println("\n[CC] Checking Achievements!\n");
+        //System.err.println("\n[CC] Checking Achievements!\n");
         
-        if (cookiemanager.getTotalCookies() >= AchievementCookiesMade.nextCookies)
+        /*if (cookiemanager.getTotalCookies() >= AchievementCookiesMade.nextCookies)
         {
             System.out.println("Achievement triggered!, " + cookiemanager.getTotalCookies() + ", " + AchievementCookiesMade.nextCookies + ", currindex: " + AchievementCookiesMade.currentIndex);
             AchievementCookiesMade.nextCookies = AchievementCookiesMade.needed[AchievementCookiesMade.currentIndex + 1];
@@ -35,7 +36,7 @@ public class AchievementThread implements Runnable
             }
             
             AchievementCookiesMade.currentIndex += 1;
-        }
+        }*/
     }
     
 }

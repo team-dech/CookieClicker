@@ -1,17 +1,17 @@
 package ch.jmnetwork.cookieclicker.threading;
 
 import ch.jmnetwork.cookieclicker.ui.CCUserInterface;
-import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
+import ch.jmnetwork.cookieclicker.util.CryptedSLHandler;
 
 public class SaveThread implements Runnable
 {
     CCUserInterface ccui;
-    SaveLoadHandler slhandler;
+    CryptedSLHandler cslhandler;
     
-    public SaveThread(CCUserInterface ccuserI, SaveLoadHandler slHandler)
+    public SaveThread(CCUserInterface ccuserI, CryptedSLHandler cslhandler)
     {
         ccui = ccuserI;
-        slhandler = slHandler;
+        this.cslhandler = cslhandler;
     }
     
     @Override
@@ -19,7 +19,7 @@ public class SaveThread implements Runnable
     {
         ccui.setInfoMessage("Saving game...");
         System.out.println("\n[CC] Saving...");
-        slhandler.saveToDisk();
+        cslhandler.save();
         System.out.println("[CC] Saving complete.\n");
         try
         {
