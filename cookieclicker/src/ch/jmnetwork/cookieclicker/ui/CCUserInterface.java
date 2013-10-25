@@ -27,11 +27,8 @@ import ch.jmnetwork.cookieclicker.CookieManager;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.helper.HelperClicker;
 import ch.jmnetwork.cookieclicker.lib.Reference;
-<<<<<<< HEAD
-import ch.jmnetwork.cookieclicker.util.NumberHelper;
-=======
 import ch.jmnetwork.cookieclicker.util.CryptedSLHandler;
->>>>>>> Crypted I/O, part 2 & a few other tweaks
+import ch.jmnetwork.cookieclicker.util.NumberHelper;
 import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
 
 public class CCUserInterface

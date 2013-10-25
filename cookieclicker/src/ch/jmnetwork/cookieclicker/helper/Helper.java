@@ -8,11 +8,7 @@ public class Helper
 {
     public static Helper[] helpers = new Helper[10];
     public static int[] owned = new int[]
-<<<<<<< HEAD
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-=======
-    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
->>>>>>> Crypted I/O, part 2 & a few other tweaks
     
     public float productivity;
     public long price, pBase;
