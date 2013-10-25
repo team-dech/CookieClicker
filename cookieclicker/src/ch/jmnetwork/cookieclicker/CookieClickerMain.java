@@ -3,14 +3,15 @@ package ch.jmnetwork.cookieclicker;
 import java.io.File;
 
 import ch.jmnetwork.cookieclicker.helper.Helper;
-import ch.jmnetwork.cookieclicker.net.NetworkHelper;
 import ch.jmnetwork.cookieclicker.threading.AchievementThread;
 import ch.jmnetwork.cookieclicker.threading.SaveThread;
 import ch.jmnetwork.cookieclicker.ui.CCUserInterface;
 import ch.jmnetwork.cookieclicker.util.CryptedSLHandler;
 import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
+import ch.jmnetwork.vapi.VersionApi;
+import ch.jmnetwork.vapi.events.VapiListener;
 
-public class CookieClickerMain
+public class CookieClickerMain implements VapiListener
 {
     public static CookieClickerMain INSTANCE;
     public static int TICKS_PER_SECOND = 25;
@@ -28,13 +29,34 @@ public class CookieClickerMain
     private static CookieManager cookiemanager = new CookieManager();
     public static CryptedSLHandler cslhandler;
     private static SaveLoadHandler slhandler = new SaveLoadHandler(cookiemanager);
+    private static VersionApi vapi = new VersionApi();
+    private static boolean doUselessLoop = true;
     
     public static void main(String[] args)
+    {
+        INSTANCE = new CookieClickerMain();
+        vapi.setVersioningURL("http://www.jmnetwork.ch/public/jm-software/ccassets/");
+        vapi.reload();
+        vapi.addListener(INSTANCE);
+        
+        if (!downloadIcon())
+        {
+            start();
+        }
+        else
+        {
+            while (doUselessLoop)
+            {
+                // Loop so the main program doesn't shutdown while we are downloading files
+            }
+        }
+    }
+    
+    private static void start()
     {
         cslhandler = new CryptedSLHandler(cookiemanager);
         ccui = new CCUserInterface(cookiemanager, slhandler, cslhandler);
         downloadIcon();
-        INSTANCE = new CookieClickerMain();
         
         cslhandler.load();
         
@@ -111,21 +133,33 @@ public class CookieClickerMain
         Helper.registerHelpers();
     }
     
-    private static void downloadIcon()
+    private static boolean downloadIcon()
     {
-        File f = new File("cookie.png");
-        if (!f.exists())
+        File cookie = new File("cookie.png");
+        File cookieSmall = new File("cookie_small.png");
+        File achievementBack = new File("AchievementBackground.png");
+        File mainBack = new File("BackgroundNew.png");
+        
+        if (!cookie.exists() || !cookieSmall.exists() || !achievementBack.exists() || !mainBack.exists())
         {
-            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie.png", "cookie.png");
-            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/cookie_small.png", "cookie_small.png");
+            vapi.downloadNewVersion(vapi.getNewestVersion(), "./");
+            return true;
         }
-        if (!new File("AchievementBackground.png").exists())
+        else
         {
-            new NetworkHelper().getFileFromURL("http://www.jmnetwork.ch/public/AchievementBackground.png", "AchievementBackground.png");
+            return false;
         }
-        if (!new File("BackgroundNew.png").exists())
-        {
-            new NetworkHelper().getFileFromURL("http://dfiles.jmnetwork.ch/BackgroundNew.png", "BackgroundNew.png");
-        }
+    }
+    
+    @Override
+    public void contentLengthAvialable(Long arg0)
+    {
+    }
+    
+    @Override
+    public void downloadComplete()
+    {
+        start();
+        doUselessLoop = false;
     }
 }
