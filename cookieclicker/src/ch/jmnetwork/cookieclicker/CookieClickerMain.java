@@ -162,4 +162,9 @@ public class CookieClickerMain implements VapiListener
         start();
         doUselessLoop = false;
     }
+    
+    @Override
+    public void updateDownloadedLength(Long arg0)
+    {
+    }
 }
