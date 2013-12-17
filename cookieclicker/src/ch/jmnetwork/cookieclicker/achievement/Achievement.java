@@ -1,27 +1,32 @@
 package ch.jmnetwork.cookieclicker.achievement;
 
-public class Achievement {
+public class Achievement
+{
     public static Achievement[] achievements = new Achievement[16];
     public static boolean[] achieved = new boolean[16];
-
+    
     public int achievementID;
     public String achievementName, achievementDesc;
-
-    public Achievement(int ID, String name, String desc) {
+    
+    public Achievement(int ID, String name, String desc)
+    {
         achievementID = ID;
         achievementName = name;
         achievementDesc = desc;
     }
-
-    public String getName() {
+    
+    public String getName()
+    {
         return achievementName;
     }
-
-    public String getDesc() {
+    
+    public String getDesc()
+    {
         return achievementDesc;
     }
-
-    public static void registerAchievements() {
+    
+    public static void registerAchievements()
+    {
         achievements[0] = new AchievementCookiesMade(0, "$N", "$D", 1);
         achievements[1] = new AchievementCookiesMade(1, "$N", "$D", 100);
         achievements[2] = new AchievementCookiesMade(2, "$N", "$D", 1000);
