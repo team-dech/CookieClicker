@@ -1,0 +1,41 @@
+<project name="Cookie Clicker" basedir="." default="main" >
+	
+	<property name="src.dir" value="cookieclicker/src" />
+	<property name="build.dir" value="build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="jar.dir" value="${build.dir}/jar" />
+	<property name="main-class" value="ch.jmnetwork.cookieclicker.CookieClickerMain" />
+	<property name="project-name" value="Cookie Clicker" />
+	
+	<target name="cleanup">
+		<delete dir="${build.dir}" />
+	</target>
+	
+	<target name="mkdirs">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${jar.dir}" />
+	</target>
+	
+	<target name="compile" >
+	<javac srcdir="${src.dir}" destdir="${classes.dir}" >
+		<classpath>
+			<fileset dir=".">
+				<include name="version-api.jar" />
+			</fileset>
+		</classpath>
+	</javac>
+	</target>
+	
+	<target name="make-jar" >
+		<jar destfile="${jar.dir}\${jar.name}" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${main-class}" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="main" depends="cleanup, mkdirs, compile"></target>
+	<target name="main-jar" depends="cleanup, mkdirs, compile, make-jar"></target>
+	
+</project>
