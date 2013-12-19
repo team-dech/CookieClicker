@@ -6,7 +6,7 @@
     <property name="build.dir" value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir" value="${build.dir}/jar"/>
-    <property name="librarys.dir" value="libs"/>
+    <property name="librarys.dir" value="../Version-API/build/jar"/>
 
     <property name="project-name" value="${ant.project.name}"/>
     <property name="jar.name" value="${project-name}.jar"/>
