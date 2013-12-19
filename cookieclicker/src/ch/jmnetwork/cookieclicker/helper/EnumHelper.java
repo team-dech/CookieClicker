@@ -1,14 +1,13 @@
 package ch.jmnetwork.cookieclicker.helper;
 
-public enum EnumHelper
-{
+public enum EnumHelper {
     ALCHEMYLAB,
-    CLICKER, 
-    FACTORY, 
-    FARM, 
-    GRANDMA, 
-    MINE, 
-    PORTAL, 
-    SHIPMENT, 
+    CLICKER,
+    FACTORY,
+    FARM,
+    GRANDMA,
+    MINE,
+    PORTAL,
+    SHIPMENT,
     TIMEMACHINE;
 }

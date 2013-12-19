@@ -1,23 +1,17 @@
 package ch.jmnetwork.cookieclicker.threading;
 
 import ch.jmnetwork.cookieclicker.CookieManager;
-import ch.jmnetwork.cookieclicker.achievement.AchievementCookiesMade;
-import ch.jmnetwork.cookieclicker.achievement.AchievementEventHandler;
-import ch.jmnetwork.cookieclicker.exceptions.EventCorruptDataException;
 
 @SuppressWarnings("unused")
-public class AchievementThread implements Runnable
-{
+public class AchievementThread implements Runnable {
     CookieManager cookiemanager;
-    
-    public AchievementThread(CookieManager cm)
-    {
+
+    public AchievementThread(CookieManager cm) {
         cookiemanager = cm;
     }
-    
+
     @Override
-    public void run()
-    {
+    public void run() {
         //System.err.println("\n[CC] Checking Achievements!\n");
         
         /*if (cookiemanager.getTotalCookies() >= AchievementCookiesMade.nextCookies)
@@ -38,5 +32,4 @@ public class AchievementThread implements Runnable
             AchievementCookiesMade.currentIndex += 1;
         }*/
     }
-    
 }
