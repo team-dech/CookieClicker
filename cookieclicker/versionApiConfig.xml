@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>JProperties Handler 1.0 www.jmnetwork.ch</comment>
-<entry key="installed_version">NOT INSTALLED</entry>
-<entry key="LOCATION">http://www.jmnetwork.ch/public/jm-software/ccassets/</entry>
+    <comment>JProperties Handler 1.0 www.jmnetwork.ch</comment>
+    <entry key="installed_version">NOT INSTALLED</entry>
+    <entry key="LOCATION">http://www.jmnetwork.ch/public/jm-software/ccassets/</entry>
 </properties>
