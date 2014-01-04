@@ -35,6 +35,7 @@ public class CCUserInterface {
     private static String currentInfoMessage = "";
 
     public static JFrame jframe;
+    private static JPanel contentPane;
     private static JLabel infoLabel;
     private static JButton cookie_button;
     private static JLabel currentCookiesLabel;
@@ -64,6 +65,7 @@ public class CCUserInterface {
                     init();
                     jframe.setVisible(true);
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -85,6 +87,7 @@ public class CCUserInterface {
         // ======================================//
 
         jframe = new JFrame();
+        contentPane = new JPanel();
         infoLabel = new JLabel();
         cookie_button = new JButton();
         currentCookiesLabel = new JLabel();
@@ -109,6 +112,7 @@ public class CCUserInterface {
 
         jframe.setTitle("Java Cookie Clicker by TH3ON1YN00B and domi1819 - Version " + Reference.VERSION);
         jframe.setSize(1000, (265 + 80));
+        jframe.setContentPane(contentPane);
         jframe.getContentPane().setLayout(null);
         jframe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jframe.setLocationRelativeTo(null);
@@ -128,6 +132,9 @@ public class CCUserInterface {
                 System.exit(0);
             }
         });
+
+        contentPane.getInputMap().put(KeyStroke.getKeyStroke("released X"), "cheatUI");
+        contentPane.getActionMap().put("cheatUI", new CheatAction());
 
         infoLabel.setText("");
         infoLabel.setFont(Font.getFont(FONT));
@@ -359,7 +366,7 @@ public class CCUserInterface {
         // UPDATE THE UI CONTENT
         // ======================================//
 
-        if (run == true || (totalCookies != null && cookiesHandmadePerSec != null && currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null && mineBuyButton != null && shipmentBuyButton != null && alchemyLabBuyButton != null && portalBuyButton != null && timeMachineBuyButton != null && condenserBuyButton != null && cookiesHandmade != null)) {
+        if (run || (totalCookies != null && cookiesHandmadePerSec != null && currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null && mineBuyButton != null && shipmentBuyButton != null && alchemyLabBuyButton != null && portalBuyButton != null && timeMachineBuyButton != null && condenserBuyButton != null && cookiesHandmade != null)) {
             run = true;
 
             // ======================================//
@@ -429,5 +436,15 @@ public class CCUserInterface {
 
     private float onlyOneAfterComma(float input) {
         return (float) (Math.floor(input * 10F) / 10F);
+    }
+
+    private class CheatAction extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("ACTIN");
+            CheatAddCookiesDialog dialog = new CheatAddCookiesDialog(cookiemanager);
+            dialog.pack();
+            dialog.setVisible(true);
+        }
     }
 }
