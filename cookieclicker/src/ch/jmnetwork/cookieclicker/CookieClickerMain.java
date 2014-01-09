@@ -1,11 +1,13 @@
 package ch.jmnetwork.cookieclicker;
 
+import ch.jmnetwork.cookieclicker.helper.EnumHelper;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.threading.AchievementThread;
 import ch.jmnetwork.cookieclicker.threading.SaveThread;
 import ch.jmnetwork.cookieclicker.ui.CCUserInterface;
 import ch.jmnetwork.cookieclicker.util.CryptedSLHandler;
 import ch.jmnetwork.cookieclicker.util.SaveLoadHandler;
+import ch.jmnetwork.core.tools.string.StringUtils;
 import ch.jmnetwork.vapi.VersionApi;
 import ch.jmnetwork.vapi.events.VapiListener;
 
@@ -32,11 +34,12 @@ public class CookieClickerMain implements VapiListener {
 
         if (!downloadIcon()) {
             start();
-        } else {
-            while (doUselessLoop) {
-                // Loop so the main program doesn't shutdown while we are downloading files
-            }
         }
+//        else {
+//            while (doUselessLoop) {
+//                // Loop so the main program doesn't shutdown while we are downloading files
+//            }
+//        }
     }
 
     private static void start() {
@@ -46,7 +49,9 @@ public class CookieClickerMain implements VapiListener {
 
         cslhandler.load();
 
-        System.out.println("Starting game...");
+        System.out.println("HELPER INFO:\n" + StringUtils.getColumnizedString(EnumHelper.getAllHelpersAsStringArray()));
+        System.out.println("\nStarting game...\n");
+
         while (true) {
             if (lastTime_1 == 0) lastTime_1 = System.nanoTime();
             if (lastTime_2 == 0) lastTime_2 = System.nanoTime();

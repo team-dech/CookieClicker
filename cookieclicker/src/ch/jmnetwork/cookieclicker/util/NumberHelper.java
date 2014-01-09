@@ -1,7 +1,8 @@
 package ch.jmnetwork.cookieclicker.util;
 
 public class NumberHelper {
-    public String addApostropheToNumber(Long number) {
+
+    public static String addApostropheToNumber(Long number) {
         String returnValue = "";
         String number_string = number + "";
         int times = 0;

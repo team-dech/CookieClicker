@@ -6,7 +6,7 @@ public class Helper {
     public static int[] owned = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     public float productivity;
-    public long price, pBase;
+    public long price;
 
     public int helperID;
 
@@ -14,12 +14,12 @@ public class Helper {
 
     public Helper(float prod, long pr, int ID) {
         productivity = prod;
-        price = pBase = pr;
+        price = pr;
         helperID = ID;
     }
 
     public long getPriceForNextHelper() {
-        return (long) (this.pBase * Math.pow(1.15F, Helper.owned[this.helperID]));
+        return (long) (this.price * Math.pow(1.15F, Helper.owned[this.helperID]));
     }
 
     public void onBought() {

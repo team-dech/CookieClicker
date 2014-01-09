@@ -15,9 +15,7 @@ public class SaveThread implements Runnable {
     @Override
     public void run() {
         ccui.setInfoMessage("Saving game...");
-        System.out.println("\n[CC] Saving...");
         cslhandler.save();
-        System.out.println("[CC] Saving complete.\n");
         try {
             Thread.sleep(500L);
         } catch (InterruptedException e) {

@@ -30,23 +30,14 @@ public class CCUserInterface {
     private CryptedSLHandler cslhandler;
 
     private final static String FONT = "Arial";
-    public final static Image cookie = Toolkit.getDefaultToolkit().getImage("cookie.png");
-    private final static Image cookie_small = Toolkit.getDefaultToolkit().getImage("cookie_small.png");
-    private final static ImageIcon cookieImageIcon = new ImageIcon(cookie);
-    private final static ImageIcon cookie_smallImageIcon = new ImageIcon(cookie_small);
     private static String currentInfoMessage = "";
+    public final static Image cookie = Toolkit.getDefaultToolkit().getImage("cookie.png"), cookie_small = Toolkit.getDefaultToolkit().getImage("cookie_small.png");
+    private final static ImageIcon cookieImageIcon = new ImageIcon(cookie), cookie_smallImageIcon = new ImageIcon(cookie_small);
 
     public static JFrame jframe;
     private static JPanel contentPane;
-    private static JLabel infoLabel;
-    private static JButton cookie_button;
-    private static JLabel currentCookiesLabel;
-    private static JLabel cookieRateLabel;
-    private static JLabel cookiesHandmade;
-    private static JLabel cookiesHandmadePerSec;
-    private static JButton pointerBuyButton;
-    private static JButton grandmaBuyButton;
-    private static JLabel totalCookies;
+    private static JLabel infoLabel, currentCookiesLabel, cookieRateLabel, cookiesHandmade, cookiesHandmadePerSec, totalCookies;
+    private static JButton cookie_button, pointerBuyButton, grandmaBuyButton;
     private static HashMap<EnumHelper, JButton> buttonMap = new HashMap<>();
 
     public CCUserInterface(CookieManager cookieManager, SaveLoadHandler slhandler, CryptedSLHandler cslhandler) {
@@ -188,10 +179,10 @@ public class CCUserInterface {
         int _cnt = 0;
         for (EnumHelper helper : EnumHelper.values()) {
             JButton btn = new JButton();
-            btn.setText(helper.name());
+            btn.setText(helper.name);
             btn.setBounds(600, _cnt * 22 + 20, 350, 20);
             btn.setEnabled(false);
-            btn.setToolTipText(""); //TODO tooltip for helpers
+            btn.setToolTipText("Produces " + helper.prodictivity + " Cookies / s"); //TODO tooltip for helpers
             btn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -236,6 +227,14 @@ public class CCUserInterface {
         jframe.getContentPane().add(totalCookies);
     }
 
+    public void updateButton(EnumHelper helper, long price, boolean active) {
+
+    }
+
+    /**
+     * @deprecated please use the newer TODO
+     */
+    @Deprecated
     public void updateUI() {
         // ======================================//
         // UPDATE THE UI CONTENT
