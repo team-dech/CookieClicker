@@ -26,7 +26,7 @@ public class Helper {
         Helper.owned[this.helperID]++;
     }
 
-    public static float getCookieRate() {
+    public static float getCookieRate() { //TODO cache CPS
         float returnValue = 0;
 
         for (int i = 0; i < helpers.length; i++)

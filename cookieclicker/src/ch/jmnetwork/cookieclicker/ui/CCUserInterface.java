@@ -2,6 +2,7 @@ package ch.jmnetwork.cookieclicker.ui;
 
 import ch.jmnetwork.cookieclicker.CookieClickerMain;
 import ch.jmnetwork.cookieclicker.CookieManager;
+import ch.jmnetwork.cookieclicker.helper.EnumHelper;
 import ch.jmnetwork.cookieclicker.helper.Helper;
 import ch.jmnetwork.cookieclicker.helper.HelperClicker;
 import ch.jmnetwork.cookieclicker.lib.Reference;
@@ -15,6 +16,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class CCUserInterface {
     // ======================================//
@@ -44,15 +46,8 @@ public class CCUserInterface {
     private static JLabel cookiesHandmadePerSec;
     private static JButton pointerBuyButton;
     private static JButton grandmaBuyButton;
-    private static JButton farmBuyButton;
-    private static JButton factoryBuyButton;
-    private static JButton mineBuyButton;
-    private static JButton shipmentBuyButton;
-    private static JButton alchemyLabBuyButton;
-    private static JButton portalBuyButton;
-    private static JButton timeMachineBuyButton;
-    private static JButton condenserBuyButton;
     private static JLabel totalCookies;
+    private static HashMap<EnumHelper, JButton> buttonMap = new HashMap<>();
 
     public CCUserInterface(CookieManager cookieManager, SaveLoadHandler slhandler, CryptedSLHandler cslhandler) {
         cookiemanager = cookieManager;
@@ -96,14 +91,6 @@ public class CCUserInterface {
         cookiesHandmadePerSec = new JLabel();
         pointerBuyButton = new JButton();
         grandmaBuyButton = new JButton();
-        farmBuyButton = new JButton();
-        factoryBuyButton = new JButton();
-        mineBuyButton = new JButton();
-        shipmentBuyButton = new JButton();
-        alchemyLabBuyButton = new JButton();
-        portalBuyButton = new JButton();
-        timeMachineBuyButton = new JButton();
-        condenserBuyButton = new JButton();
         totalCookies = new JLabel();
 
         // ======================================//
@@ -133,7 +120,7 @@ public class CCUserInterface {
             }
         });
 
-        contentPane.getInputMap().put(KeyStroke.getKeyStroke("released X"), "cheatUI");
+        contentPane.getInputMap().put(KeyStroke.getKeyStroke("typed x"), "cheatUI");
         contentPane.getActionMap().put("cheatUI", new CheatAction());
 
         infoLabel.setText("");
@@ -194,145 +181,41 @@ public class CCUserInterface {
         cookiesHandmadePerSec.setFont(Font.getFont(FONT));
         cookiesHandmadePerSec.setBounds(300, 50, 300, 50);
 
-        pointerBuyButton.setText("POINTERS_HERE");
-        pointerBuyButton.setFont(Font.getFont(FONT));
-        pointerBuyButton.setBounds(600, 20, 350, 20);
-        pointerBuyButton.setEnabled(false);
-        pointerBuyButton.setToolTipText(Helper.helpers[0].productivity + " Cookies / s");
-        pointerBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(0))) {
-                    Helper.helpers[0].onBought();
-                }
-            }
-        });
+        // ======================================//
+        // ALL HELPERS
+        // ======================================//
 
-        grandmaBuyButton.setText("GRANDMAS_HERE");
-        grandmaBuyButton.setFont(Font.getFont(FONT));
-        grandmaBuyButton.setBounds(600, 42, 350, 20);
-        grandmaBuyButton.setEnabled(false);
-        grandmaBuyButton.setToolTipText(Helper.helpers[1].productivity + " Cookies / s");
-        grandmaBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(1))) {
-                    Helper.helpers[1].onBought();
+        int _cnt = 0;
+        for (EnumHelper helper : EnumHelper.values()) {
+            JButton btn = new JButton();
+            btn.setText(helper.name());
+            btn.setBounds(600, _cnt * 22 + 20, 350, 20);
+            btn.setEnabled(false);
+            btn.setToolTipText(""); //TODO tooltip for helpers
+            btn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //TODO buy handling
                 }
-            }
-        });
+            });
+            jframe.getContentPane().add(btn);
+            _cnt++;
+        }
 
-        farmBuyButton.setText("FARMS_HERE");
-        farmBuyButton.setFont(Font.getFont(FONT));
-        farmBuyButton.setBounds(600, 64, 350, 20);
-        farmBuyButton.setEnabled(false);
-        farmBuyButton.setToolTipText(Helper.helpers[2].productivity + " Cookies / s");
-        farmBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(2))) {
-                    Helper.helpers[2].onBought();
-                }
-            }
-        });
+//        pointerBuyButton.setText("POINTERS_HERE");
+//        pointerBuyButton.setFont(Font.getFont(FONT));
+//        pointerBuyButton.setBounds(600, 20, 350, 20);
+//        pointerBuyButton.setEnabled(false);
+//        pointerBuyButton.setToolTipText(Helper.helpers[0].productivity + " Cookies / s");
+//        pointerBuyButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent arg0) {
+//                if (cookiemanager.buyPrice(Helper.getPriceForHelper(0))) {
+//                    Helper.helpers[0].onBought();
+//                }
+//            }
+//        });
 
-        factoryBuyButton.setText("FACTORYS_HERE");
-        factoryBuyButton.setFont(Font.getFont(FONT));
-        factoryBuyButton.setBounds(600, 86, 350, 20);
-        factoryBuyButton.setEnabled(false);
-        factoryBuyButton.setToolTipText(Helper.helpers[3].productivity + " Cookies / s");
-        factoryBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(3))) {
-                    Helper.helpers[3].onBought();
-                }
-            }
-        });
-
-        mineBuyButton.setText("MINES_HERE");
-        mineBuyButton.setFont(Font.getFont(FONT));
-        mineBuyButton.setBounds(600, 108, 350, 20);
-        mineBuyButton.setEnabled(false);
-        mineBuyButton.setToolTipText(Helper.helpers[4].productivity + " Cookies / s");
-        mineBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(4))) {
-                    Helper.helpers[4].onBought();
-                }
-            }
-        });
-
-        shipmentBuyButton.setText("SHIPMENTS_HERE");
-        shipmentBuyButton.setFont(Font.getFont(FONT));
-        shipmentBuyButton.setBounds(600, 130, 350, 20);
-        shipmentBuyButton.setEnabled(false);
-        shipmentBuyButton.setToolTipText(Helper.helpers[5].productivity + " Cookies / s");
-        shipmentBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(5))) {
-                    Helper.helpers[5].onBought();
-                }
-            }
-        });
-
-        alchemyLabBuyButton.setText("ALCHEMYLABS_HERE");
-        alchemyLabBuyButton.setFont(Font.getFont(FONT));
-        alchemyLabBuyButton.setBounds(600, 152, 350, 20);
-        alchemyLabBuyButton.setEnabled(false);
-        alchemyLabBuyButton.setToolTipText(Helper.helpers[6].productivity + " Cookies / s");
-        alchemyLabBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(6))) {
-                    Helper.helpers[6].onBought();
-                }
-            }
-        });
-
-        portalBuyButton.setText("PORTALS_HERE");
-        portalBuyButton.setFont(Font.getFont(FONT));
-        portalBuyButton.setBounds(600, 174, 350, 20);
-        portalBuyButton.setEnabled(false);
-        portalBuyButton.setToolTipText(Helper.helpers[7].productivity + " Cookies / s");
-        portalBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(7))) {
-                    Helper.helpers[7].onBought();
-                }
-            }
-        });
-
-        timeMachineBuyButton.setText("TIMEMACHINES_HERE");
-        timeMachineBuyButton.setFont(Font.getFont(FONT));
-        timeMachineBuyButton.setBounds(600, 196, 350, 20);
-        timeMachineBuyButton.setEnabled(false);
-        timeMachineBuyButton.setToolTipText(Helper.helpers[8].productivity + " Cookies / s");
-        timeMachineBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(8))) {
-                    Helper.helpers[8].onBought();
-                }
-            }
-        });
-
-        condenserBuyButton.setText("CONDENSER");
-        condenserBuyButton.setFont(Font.getFont(FONT));
-        condenserBuyButton.setBounds(600, 218, 350, 20);
-        condenserBuyButton.setEnabled(false);
-        condenserBuyButton.setToolTipText(Helper.helpers[9].productivity + " Cookies / s");
-        condenserBuyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                if (cookiemanager.buyPrice(Helper.getPriceForHelper(9))) {
-                    Helper.helpers[9].onBought();
-                }
-            }
-        });
 
         totalCookies.setText("TOTAL_HERE");
         totalCookies.setFont(Font.getFont(FONT));
@@ -349,15 +232,7 @@ public class CCUserInterface {
         jframe.getContentPane().add(cookiesHandmadePerSec);
         jframe.getContentPane().add(pointerBuyButton);
         jframe.getContentPane().add(grandmaBuyButton);
-        jframe.getContentPane().add(farmBuyButton);
-        jframe.getContentPane().add(factoryBuyButton);
-        jframe.getContentPane().add(mineBuyButton);
         jframe.getContentPane().add(infoLabel);
-        jframe.getContentPane().add(shipmentBuyButton);
-        jframe.getContentPane().add(alchemyLabBuyButton);
-        jframe.getContentPane().add(portalBuyButton);
-        jframe.getContentPane().add(timeMachineBuyButton);
-        jframe.getContentPane().add(condenserBuyButton);
         jframe.getContentPane().add(totalCookies);
     }
 
@@ -366,7 +241,7 @@ public class CCUserInterface {
         // UPDATE THE UI CONTENT
         // ======================================//
 
-        if (run || (totalCookies != null && cookiesHandmadePerSec != null && currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && farmBuyButton != null && factoryBuyButton != null && mineBuyButton != null && shipmentBuyButton != null && alchemyLabBuyButton != null && portalBuyButton != null && timeMachineBuyButton != null && condenserBuyButton != null && cookiesHandmade != null)) {
+        if (run || (totalCookies != null && cookiesHandmadePerSec != null && currentCookiesLabel != null && cookieRateLabel != null && pointerBuyButton != null && grandmaBuyButton != null && cookiesHandmade != null)) {
             run = true;
 
             // ======================================//
@@ -378,15 +253,6 @@ public class CCUserInterface {
             cookiesHandmade.setText("Handmade Cookies: " + nh.addApostropheToNumber(cookiemanager.getHandmadeCookies()));
             cookiesHandmadePerSec.setText("Handmade Cookies / s: " + CookieClickerMain.handmadePerSec);
             pointerBuyButton.setText(Helper.owned[0] + " Pointers | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(0)));
-            grandmaBuyButton.setText(Helper.owned[1] + " Grandmas | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(1)));
-            farmBuyButton.setText(Helper.owned[2] + " Farms | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(2)));
-            factoryBuyButton.setText(Helper.owned[3] + " Factorys | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(3)));
-            mineBuyButton.setText(Helper.owned[4] + " Mines | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(4)));
-            shipmentBuyButton.setText(Helper.owned[5] + " Shipments | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(5)));
-            alchemyLabBuyButton.setText(Helper.owned[6] + " Alchemy Labs | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(6)));
-            portalBuyButton.setText(Helper.owned[7] + " Portals | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(7)));
-            timeMachineBuyButton.setText(Helper.owned[8] + " Time Machines | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(8)));
-            condenserBuyButton.setText(Helper.owned[9] + " Condensers | Buy for " + nh.addApostropheToNumber(Helper.getPriceForHelper(9)));
             totalCookies.setText("All-Time Cookies: " + nh.addApostropheToNumber(cookiemanager.getTotalCookies()));
 
             // ======================================//
@@ -395,33 +261,6 @@ public class CCUserInterface {
             
             /* POINTERS */
             pointerBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(0));
-            
-            /* GRANDMAS */
-            grandmaBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(1));
-            
-            /* FARMS */
-            farmBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(2));
-            
-            /* FACTORYS */
-            factoryBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(3));
-            
-            /* MINES */
-            mineBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(4));
-            
-            /* SHIPMENTS */
-            shipmentBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(5));
-            
-            /* ALCHEMYLAB */
-            alchemyLabBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(6));
-            
-            /* PORTAL */
-            portalBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(7));
-            
-            /* TIMEMACHINE */
-            timeMachineBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(8));
-            
-            /* CONDENSER */
-            condenserBuyButton.setEnabled(cookiemanager.getCurrentCookies() >= Helper.getPriceForHelper(9));
         }
     }
 
